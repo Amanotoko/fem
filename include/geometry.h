@@ -9,13 +9,6 @@
 # Description: 
 #
 =============================================================================*/
-/*
- * geometry.h
- * FEM_current_density
- *
- * Created by Kai He on 04/11/16.
- * Copyright (c) 2016 VSCLAB. All righs reserved.
- */
 
 #ifndef __geometry_h__
 #define __geometry_h__
@@ -33,7 +26,6 @@ class MeshFormat{
 		MeshFormat(void) : version_(""), file_type_(""), data_size_("") {}
 		MeshFormat(std::string version, std::string file_type, std::string data_size) : 
 		version_(version), file_type_(file_type), data_size_(data_size) {}	
-		~MeshFormat(void);
 		
 		std::string getVersion() const { return version_; }
 		std::string getFileType() const { return file_type_; }
@@ -52,7 +44,6 @@ class Node{
 	public:
 		Node(double x, double y, double z) : x_(x), y_(y), z_(z) {}
 		Node(void) : x_(0), y_(0), z_(0) {}
-		~Node(void);
 
 		void setNode(std::istream &in);
 		void printNode(std::ostream &out) const;
