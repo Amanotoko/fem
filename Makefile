@@ -10,6 +10,7 @@ SRC_DIR:= source
 INC_DIR:= include
 EXP_DIR:= example
 BUILD_DIR:= build
+ARMA_DIR:= armadillo-6.700.5/include
 TEST_SRC_DIR:= $(SRC_DIR)/test
 TEST_EXEC_DIR:= $(BUILD_DIR)/exec
 
@@ -20,7 +21,8 @@ INC_FILES:= $(wildcard $(INC_DIR)/*.h)
 
 TEST_EXEC:= $(patsubst $(TEST_SRC_DIR)/%.cc, $(TEST_EXEC_DIR)/%, $(TEST_FILES))
 
-INC:= -I$(INC_DIR)
+INC:= -I$(INC_DIR) 
+LDFLAGS:= -larmadillo
 
 default: binary test
 
