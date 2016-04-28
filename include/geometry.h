@@ -45,6 +45,7 @@ class Element{
 		Element(void) : type_(0), tagNum_(0), nodeNum_(0) {}	
 		void setEle(std::istream &in);
 		void printEle(std::ostream &out) const;
+		void printEle(void) const;
 };
 
 class Mesh{
