@@ -1,6 +1,6 @@
 dir = '../example/';
 
-name = 'ADC_RST_M';
+name = 'V3P3_S5';
 
 m = '.msh';
 b = '.cond';
