@@ -12,29 +12,11 @@
 
 #ifndef __geometry_h__
 #define __geometry_h__
+#endif
 
 #include<string>
 #include<iostream>
 #include<vector>
-
-class MeshFormat{
-	private:
-		std::string version_;
-		std::string file_type_;
-		std::string data_size_;
-	public:
-		MeshFormat(void) : version_(""), file_type_(""), data_size_("") {}
-		MeshFormat(std::string version, std::string file_type, std::string data_size) : 
-		version_(version), file_type_(file_type), data_size_(data_size) {}	
-		
-		std::string getVersion() const { return version_; }
-		std::string getFileType() const { return file_type_; }
-		std::string getDataSize() const { return data_size_; }
-
-		void setVersion(std::string version) { version_ = version; }
-		void setFileType(std::string file_type) { file_type_ = file_type; }
-		void setDataSize(std::string data_size) { data_size_ = data_size; }
-};
 
 class Node{
 	private:
@@ -65,4 +47,26 @@ class Element{
 		void printEle(std::ostream &out) const;
 };
 
-#endif
+class Mesh{
+	private:
+		std::string version_;
+		std::string file_type_;
+		std::string data_size_;
+		int nodeNum_;
+		int eleNum_;
+		std::vector<Node> node_;
+		std::vector<Element> element_;
+	public:
+		Mesh(void) : version_(""), file_type_(""), data_size_("") {}
+		
+		std::string getVersion() const { return version_; }
+		std::string getFileType() const { return file_type_; }
+		std::string getDataSize() const { return data_size_; }
+
+		void setMesh(std::istream &in);
+		void printMesh(std::ostream &out) const;
+
+		void setVersion(std::string version) { version_ = version; }
+		void setFileType(std::string file_type) { file_type_ = file_type; }
+		void setDataSize(std::string data_size) { data_size_ = data_size; }
+};
