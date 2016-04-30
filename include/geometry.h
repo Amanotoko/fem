@@ -12,7 +12,6 @@
 
 #ifndef __geometry_h__
 #define __geometry_h__
-#endif
 
 #include<string>
 #include<iostream>
@@ -71,3 +70,4 @@ class Mesh{
 		void setFileType(std::string file_type) { file_type_ = file_type; }
 		void setDataSize(std::string data_size) { data_size_ = data_size; }
 };
+#endif
