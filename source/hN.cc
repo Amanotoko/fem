@@ -12,6 +12,8 @@
 
 #include "hN.h"
 
+using namespace arma;
+
 cx_mat hN(cx_cube A)
 {
     int nr = A.n_rows;

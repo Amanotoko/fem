@@ -25,7 +25,7 @@ class Boundary{
 		std::vector<double> sVal_;
 		std::vector<double> vVal_;
 	public:
-		Boundary(void);
+		Boundary(void): volNum_(0), surfNum_(0), vol_(0, 0), surf_(0, 0), sVal_(0, 0), vVal_(0,0) {}
 		void setBoundary(std::istream &in);
 		void printBoundary(std::ostream &out) const;
 		std::vector<int> getVol(void) {
@@ -40,6 +40,6 @@ class Boundary{
 		std::vector<double> getVVal(void) {
 			return vVal_;
 		}
-}
+};
 
 #endif

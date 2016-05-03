@@ -21,8 +21,10 @@ void Boundary :: setBoundary(istream &in) {
 	getline(in, cache);
 	in >> volNum_;
 	for (int i = 0; i < volNum_; ++i) {
-		int val;
-		in >> val;
+		int vid; 
+		double val;
+		in >> vid >> val;
+		vol_.push_back(vid);
 		vVal_.push_back(val);
 	}
 	//$surface
@@ -31,12 +33,23 @@ void Boundary :: setBoundary(istream &in) {
 
 	in >> surfNum_;
 	for (int i = 0; i < surfNum_; ++i) {
-		int val;
-		in >> val;
+		int sid;
+		double val;
+		in >> sid >> val;
+		surf_.push_back(sid);
 		sVal_.push_back(val);
 	}
 } 
 
-void Boundary :: printBoundary(ostream &out) {
-	
+void Boundary :: printBoundary(ostream &out) const{
+	out << "$Volumn" << endl;
+	out << volNum_ << endl;
+	for (int i = 0; i < volNum_; ++i) {
+		out << vol_[i] << " " << vVal_[i] << endl;
+	}
+	out << "$Surface" << endl;
+	out << surfNum_ << endl;
+	for (int i = 0; i < surfNum_; ++i) {
+		out << surf_[i] << " " << sVal_[i] << endl;
+	}
 }

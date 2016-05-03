@@ -13,14 +13,21 @@
 #define DEBUG
 
 #include "geometry.h"
+#include "loadB.h"
 
 using namespace std;
 
 int main() {
 	Mesh myMesh;
+	Boundary myBoundary;
 #ifdef DEBUG
-	myMesh.setMesh(cin);
-	myMesh.printMesh(cout);
+	myBoundary.setBoundary(cin);
+//	myBoundary.printBoundary(cout);
+
+	vector<int> t = myBoundary.getSurf();
+	for (int i = 0; i < t.size(); ++i)
+		cout << t[i] << endl;
+	copy(t.begin(), t.end(), ostream_iterator<int> (cout, "\n"));
 #endif
 
 }

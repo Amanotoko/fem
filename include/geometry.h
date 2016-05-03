@@ -62,6 +62,9 @@ class Mesh{
 		std::string getVersion() const { return version_; }
 		std::string getFileType() const { return file_type_; }
 		std::string getDataSize() const { return data_size_; }
+		int getNodeNum() const { return nodeNum_; }
+		int getEleNum() const { return eleNum_; }
+		
 
 		void setMesh(std::istream &in);
 		void printMesh(std::ostream &out) const;

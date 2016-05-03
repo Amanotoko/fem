@@ -12,6 +12,8 @@
 
 #include "BDB.h"
 using namespace std;
+using namespace arma;
+
 void BDB(mat &U, mat oldU, vec &S, mat &V, int Nc, int fstep)
 {
     if (fstep > 1)

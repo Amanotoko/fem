@@ -14,6 +14,8 @@
 #include "boundary.h"
 const double pi = 3.1416;
 
+using namespace arma;
+
 cx_mat boundary(cx_mat S)
 {
     int Nc = S.n_cols;
