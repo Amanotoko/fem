@@ -1,6 +1,6 @@
 dir = '../example/';
 
-name = 'V3P3_S5';
+name = 't_thin';
 
 m = '.msh';
 b = '.cond';
