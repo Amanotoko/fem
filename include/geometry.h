@@ -25,6 +25,10 @@ class Node{
 	public:
 		Node(double x, double y, double z) : x_(x), y_(y), z_(z) {}
 		Node(void) : x_(0), y_(0), z_(0) {}
+		
+		double getx(void) { return x_; }
+		double gety(void) { return y_; }
+		double getz(void) { return z_; }
 
 		void setNode(std::istream &in);
 		void printNode(std::ostream &out) const;
@@ -43,6 +47,15 @@ class Element{
 	public:
 		Element(void) : type_(0), tagNum_(0), nodeNum_(0) {}	
 		void setEle(std::istream &in);
+		
+		std::vector<int> getNodeList(void) const { return node_; }
+		int getMaterial(void) const { 
+			if (tag_.size() > 0)
+				return tag_[0]; 
+			else
+				return 0;
+		};
+
 		void printEle(std::ostream &out) const;
 		void printEle(void) const;
 };
@@ -65,6 +78,8 @@ class Mesh{
 		int getNodeNum() const { return nodeNum_; }
 		int getEleNum() const { return eleNum_; }
 		
+		std::vector<Node> getNodeList() const { return node_; }
+		std::vector<Element> getEleList() const {return element_; }
 
 		void setMesh(std::istream &in);
 		void printMesh(std::ostream &out) const;

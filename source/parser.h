@@ -2,19 +2,27 @@
 #
 # Author: Kai He - khe004@ucr.edu
 #
-# Last modified: 2016-05-02 13:09
+# Last modified: 2016-05-03 15:13
 #
-# Filename: KBDB.cc
+# Filename: parser.cc
 #
 # Description: 
 #
 =============================================================================*/
 
-#include "KBDB.h"
+#include "parser.h"
+#include "armadillo"
 
-using namespace arma;
 using namespace std;
+using namespace arma;
 
+void MeshParser(Mesh &myMesh) {
+	
+	int nodeNum = myMesh.getNodeNum();
+	vector<Node> nodes = myMesh.getNodeList();
+	vector<Element> elems = myMesh.getEleList();
+
+}
 
 //return a 4-by-3 matrix, each row represents a node in tetra. 
 
@@ -29,29 +37,4 @@ mat EleParser(vector<Element> &elems, vector<Node> &nodes, int i) {
 		NodeCor(i, 2) = nodes[nodesInEle[i]].getz;
 	}
 	return NodeCor; 
-}
-
-//Calculate the structure matrix of the device 
-sp_mat BDB(Mesh &myMesh, Boundary &myBoundary) {
-	int NodeNum = myMesh.getNodeNum();
-	sp_mat KBDB(NodeNum, NodeNum);
-
-	int LMtl = myBoundary.getVol();
-	vector<double> Material = myBoundary.getVVal();
-	vector<int> vol = myBoundary.getVol();
-
-	for (int i = 0; i < LMtl; ++i) {
-		mat D(3,3);
-		D.zeros();
-		D(0, 0) = Material[i];
-		D(1, 1) = Material[i];
-		D(2, 2) = Material[i];	
-		vid = vol[i];
-
-		for (int j = 0; j < vol.size(); ++j) {
-			if ()
-		}
-	}
-
-	return KBDB;
 }
