@@ -1,6 +1,6 @@
 function KBDB = BDB(Node_Num,TetraEle, NodeCor, Material)
-
-% Calculate the structure matrix of the device
+% Generate the matrix K for all the finite elements
+% where KX = f. 
 
 KBDB = sparse(Node_Num,Node_Num);
 
@@ -12,10 +12,11 @@ for n = 1:LMtl,
     LDpos = length(Dpos);
 
     for k = 1:LDpos,
-    Node = TetraEle(Dpos(k),6:9);
-    nodecor = NodeCor(Node,2:4);
-    [V B] = BMat(nodecor);
-    BDBm = B'*D*B*V;
-    KBDB(Node,Node) = KBDB(Node,Node)+ BDBm;
+        % see eq(3.261) in the book by R. Lewis pp. 91
+        Node = TetraEle(Dpos(k),6:9);
+        nodecor = NodeCor(Node,2:4);
+        [V B] = BMat(nodecor);
+        BDBm = B'*D*B*V;
+        KBDB(Node,Node) = KBDB(Node,Node)+ BDBm;
     end
 end

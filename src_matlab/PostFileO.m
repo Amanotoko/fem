@@ -16,7 +16,7 @@ fprintf(fidW,'$NodeData\n');
 num_of_string_tag = 1;
 fprintf(fidW,'%d\n',num_of_string_tag);
 
-name_of_view = 'scalar view';
+name_of_view = 'current density view';
 fprintf(fidW,'"%s"\n',name_of_view);   
 
 num_of_real_tag = 1;
@@ -43,5 +43,5 @@ tp = [tp '\n'];
 fprintf(fidW,tp,T);
 fprintf(fidW,'$EndNodeData');
 fclose(fidW);
-F = 'Post Processing file is created!';
+F = 'Post processing file is created!';
 disp(F);

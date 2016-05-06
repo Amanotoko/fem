@@ -1,6 +1,6 @@
 dir = '../example/';
 
-name = 't_thin';
+name = 'Net1351';
 
 m = '.msh';
 b = '.cond';
