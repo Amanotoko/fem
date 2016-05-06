@@ -6,7 +6,7 @@ function val = cofactor(i,j,A)
 %
 %             Use in the form  ==>  cofactor(i,j,A)  <==
 %
-%     By: David R. Hill, MATH DEPT, Temple University,
+%     By: Davids R. Hill, MATH DEPT, Temple University,
 %         Philadelphia, Pa. 19122   Email: hill@math.temple.edu
 
 [m,n]=size(A);

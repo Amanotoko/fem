@@ -12,6 +12,12 @@
 
 #include "armadillo"
 #include "geometry.h"
-#incldue "loadB.h"
+#include "loadB.h"
 
 arma::sp_mat BDB(Mesh &myMesh, Boundary &myBoundary);
+
+arma::mat EleParser(Element &e, std::vector<Node> &nodes); 
+
+void BMat(arma::mat &nodecor, arma::mat &Y, double &V);
+
+double cofactor(int i, int j, arma::mat A);
