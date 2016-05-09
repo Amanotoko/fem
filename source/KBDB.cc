@@ -10,6 +10,10 @@
 #
 =============================================================================*/
 
+#define DEBUG
+//#define DEBUG_node
+#define DEBUG_fill
+
 #include "KBDB.h"
 
 using namespace arma;
@@ -76,7 +80,8 @@ double cofactor(int i, int j, mat A) {
 void fillSpMat(vector<int> &row, vector<int> &col, sp_mat & A, mat &val) {
 	for (int i = 0; i < row.size(); ++i) {
 		for (int j = 0; j < col.size(); ++j) {
-			A(row[i], col[j]) += val(i, j);
+			// -1 because nodeID starts from 1, matrix idx starts from 0
+			A(row[i]-1, col[j]-1) += val(i, j);
 		}
 	}
 }
@@ -92,10 +97,16 @@ sp_mat BDB(Mesh &myMesh, Boundary &myBoundary) {
 	vector<Element> elems = myMesh.getEleList(); // all elements in FEM
 	vector<Node> nodes = myMesh.getNodeList(); // all nodes in FEM
 
+#ifdef DEBUG
+	cout << "NodeNum = " << NodeNum << endl;
+	cout << "LMtl = " << LMtl << endl; 	
+#endif
+
 	// Handle different volumes
 	for (int i = 0; i < LMtl; ++i) {
 		mat D(3,3);
 		D.zeros();
+		// idx all -1
 		D(0, 0) = Material[i];
 		D(1, 1) = Material[i];
 		D(2, 2) = Material[i];	
@@ -106,6 +117,9 @@ sp_mat BDB(Mesh &myMesh, Boundary &myBoundary) {
 			mat nodecor;
 			if (mtag == vid) {
 				nodecor = EleParser(elems[j], nodes);
+#ifdef DEBUG_node
+				cout << nodecor << endl;
+#endif
 				double V;
 				mat B;
 				BMat(nodecor, B, V);

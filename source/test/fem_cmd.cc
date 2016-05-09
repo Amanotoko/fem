@@ -10,18 +10,76 @@
 #
 =============================================================================*/
 
-#define DEBUG_A_SP
+//#define DEBUG_A_SP
+//#define DEBUG_IO
 
 #include "geometry.h"
 #include "loadB.h"
+#include "KBDB.h"
 #include "armadillo"
+#include <fstream>
+#include <string>
 
 using namespace std;
 using namespace arma;
 
-int main() {
+void help_message() {
+	cout << endl;
+	cout << "FEM current density analysis program V0.1" << endl;
+	cout << "Usage: fem_cmd -i inputfile -b boundaryfile [-o output_file] " << endl;
+}
+
+
+int main(int argc, char** argv) {
 	Mesh myMesh;
 	Boundary myBoundary;
+
+	string iFileName;
+	string bFileName;
+	string oFileName = "test.out";
+
+	if (argc < 5) {
+		help_message();
+		return -1;
+	}
+
+	for (int i = 1; i < argc;) {
+		if (strcmp(argv[i], "-i") == 0) {
+			if (i + 1 >= argc) {
+				help_message();
+				return -1;
+			}
+			iFileName = argv[i + 1];
+			i += 2;
+		}
+		else if (strcmp(argv[i], "-b") == 0) {
+			if (i + 1 >= argc) {
+				help_message();
+				return -1;
+			}
+			bFileName = argv[i + 1];
+			i += 2;
+		}
+	}
+
+	cout << "Input File: " << iFileName << endl;
+	cout << "Boundary File: " << bFileName << endl;
+	cout << "Output File: " << oFileName << endl;
+
+	ifstream fin;
+	// read inputfile
+	fin.open(iFileName.c_str());
+	myMesh.setMesh(fin);	
+	fin.close();
+
+	// read boundaryfile
+	fin.open(bFileName.c_str());
+	myBoundary.setBoundary(fin);
+	fin.close();
+
+#ifdef DEBUG_IO
+	myMesh.printMesh(cout);
+#endif
 
 #ifdef DEBUG_B
 	myBoundary.setBoundary(cin);
@@ -44,7 +102,9 @@ int main() {
 
 #ifdef DEBUG_A_SP
 	sp_mat A(10,10);
-
 #endif
+
+	sp_mat A;
+	A = BDB(myMesh, myBoundary);
 
 }
