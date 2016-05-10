@@ -15,6 +15,7 @@ find_path(SuperLU_INCLUDE_DIR slu_cdefs.h
   /opt/local/include/superlu/
   /opt/local/include/SuperLU/
   /opt/local/include/
+  /Users/kaihe/gitlab/fem/SuperLU_4.3/SRC/
 )
 
 find_library(SuperLU_LIBRARY

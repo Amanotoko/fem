@@ -17,6 +17,7 @@
 #include "loadB.h"
 #include "boundary.h"
 #include "KBDB.h"
+#include "dump.h"
 #include "armadillo"
 #include <fstream>
 #include <string>
@@ -125,5 +126,6 @@ int main(int argc, char** argv) {
 
 	BoundaryUpdate(myMesh, myBoundary, K, f);
 	
+	dump(oFileName, iFileName, f);	
 	vec x = spsolve(K, f);
 }

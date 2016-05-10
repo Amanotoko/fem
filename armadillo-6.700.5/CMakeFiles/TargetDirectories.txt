@@ -1,7 +1,6 @@
-/Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/CMakeFiles/edit_cache.dir
-/Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/CMakeFiles/rebuild_cache.dir
-/Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/CMakeFiles/install/local.dir
-/Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/CMakeFiles/list_install_components.dir
-/Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/CMakeFiles/install.dir
-/Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/CMakeFiles/install/strip.dir
-/Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/CMakeFiles/armadillo.dir
+/Users/kaihe/gitlab/fem/armadillo-6.700.5/CMakeFiles/edit_cache.dir
+/Users/kaihe/gitlab/fem/armadillo-6.700.5/CMakeFiles/rebuild_cache.dir
+/Users/kaihe/gitlab/fem/armadillo-6.700.5/CMakeFiles/install/local.dir
+/Users/kaihe/gitlab/fem/armadillo-6.700.5/CMakeFiles/list_install_components.dir
+/Users/kaihe/gitlab/fem/armadillo-6.700.5/CMakeFiles/install.dir
+/Users/kaihe/gitlab/fem/armadillo-6.700.5/CMakeFiles/armadillo.dir

@@ -1,4 +1,4 @@
-# Install script for directory: /Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5
+# Install script for directory: /Users/kaihe/gitlab/fem/armadillo-6.700.5
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -36,7 +36,7 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/usr/local/include" TYPE DIRECTORY FILES "/Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/tmp/include/" REGEX "/\\.svn$" EXCLUDE REGEX "/[^/]*\\.cmake$" EXCLUDE REGEX "/[^/]*\\~$" EXCLUDE REGEX "/[^/]*orig$" EXCLUDE)
+file(INSTALL DESTINATION "/usr/local/include" TYPE DIRECTORY FILES "/Users/kaihe/gitlab/fem/armadillo-6.700.5/tmp/include/" REGEX "/\\.svn$" EXCLUDE REGEX "/[^/]*\\.cmake$" EXCLUDE REGEX "/[^/]*\\~$" EXCLUDE REGEX "/[^/]*orig$" EXCLUDE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
@@ -49,9 +49,9 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
 file(INSTALL DESTINATION "/usr/local/lib" TYPE SHARED_LIBRARY FILES
-    "/Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/libarmadillo.6.70.5.dylib"
-    "/Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/libarmadillo.6.dylib"
-    "/Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/libarmadillo.dylib"
+    "/Users/kaihe/gitlab/fem/armadillo-6.700.5/libarmadillo.6.70.5.dylib"
+    "/Users/kaihe/gitlab/fem/armadillo-6.700.5/libarmadillo.6.dylib"
+    "/Users/kaihe/gitlab/fem/armadillo-6.700.5/libarmadillo.dylib"
     )
   foreach(file
       "$ENV{DESTDIR}/usr/local/lib/libarmadillo.6.70.5.dylib"
@@ -60,12 +60,9 @@ file(INSTALL DESTINATION "/usr/local/lib" TYPE SHARED_LIBRARY FILES
       )
     if(EXISTS "${file}" AND
        NOT IS_SYMLINK "${file}")
-      execute_process(COMMAND "/usr/bin/install_name_tool"
+      execute_process(COMMAND "/opt/local/bin/install_name_tool"
         -id "libarmadillo.6.dylib"
         "${file}")
-      if(CMAKE_INSTALL_DO_STRIP)
-        execute_process(COMMAND "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip" "${file}")
-      endif()
     endif()
   endforeach()
 endif()
@@ -74,7 +71,7 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "dev")
   if(EXISTS "$ENV{DESTDIR}/usr/local/share/Armadillo/CMake/ArmadilloLibraryDepends.cmake")
     file(DIFFERENT EXPORT_FILE_CHANGED FILES
          "$ENV{DESTDIR}/usr/local/share/Armadillo/CMake/ArmadilloLibraryDepends.cmake"
-         "/Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/CMakeFiles/Export/_usr/local/share/Armadillo/CMake/ArmadilloLibraryDepends.cmake")
+         "/Users/kaihe/gitlab/fem/armadillo-6.700.5/CMakeFiles/Export/_usr/local/share/Armadillo/CMake/ArmadilloLibraryDepends.cmake")
     if(EXPORT_FILE_CHANGED)
       file(GLOB OLD_CONFIG_FILES "$ENV{DESTDIR}/usr/local/share/Armadillo/CMake/ArmadilloLibraryDepends-*.cmake")
       if(OLD_CONFIG_FILES)
@@ -91,7 +88,7 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "dev")
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/usr/local/share/Armadillo/CMake" TYPE FILE FILES "/Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/CMakeFiles/Export/_usr/local/share/Armadillo/CMake/ArmadilloLibraryDepends.cmake")
+file(INSTALL DESTINATION "/usr/local/share/Armadillo/CMake" TYPE FILE FILES "/Users/kaihe/gitlab/fem/armadillo-6.700.5/CMakeFiles/Export/_usr/local/share/Armadillo/CMake/ArmadilloLibraryDepends.cmake")
   if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^()$")
     list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
      "/usr/local/share/Armadillo/CMake/ArmadilloLibraryDepends-noconfig.cmake")
@@ -101,7 +98,7 @@ file(INSTALL DESTINATION "/usr/local/share/Armadillo/CMake" TYPE FILE FILES "/Us
     if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
         message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
     endif()
-file(INSTALL DESTINATION "/usr/local/share/Armadillo/CMake" TYPE FILE FILES "/Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/CMakeFiles/Export/_usr/local/share/Armadillo/CMake/ArmadilloLibraryDepends-noconfig.cmake")
+file(INSTALL DESTINATION "/usr/local/share/Armadillo/CMake" TYPE FILE FILES "/Users/kaihe/gitlab/fem/armadillo-6.700.5/CMakeFiles/Export/_usr/local/share/Armadillo/CMake/ArmadilloLibraryDepends-noconfig.cmake")
   endif()
 endif()
 
@@ -115,8 +112,8 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "dev")
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
 file(INSTALL DESTINATION "/usr/local/share/Armadillo/CMake" TYPE FILE FILES
-    "/Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/InstallFiles/ArmadilloConfig.cmake"
-    "/Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/InstallFiles/ArmadilloConfigVersion.cmake"
+    "/Users/kaihe/gitlab/fem/armadillo-6.700.5/InstallFiles/ArmadilloConfig.cmake"
+    "/Users/kaihe/gitlab/fem/armadillo-6.700.5/InstallFiles/ArmadilloConfigVersion.cmake"
     )
 endif()
 
@@ -128,5 +125,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/kaihe/gitlab/fem/armadillo-6.700.5/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

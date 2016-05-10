@@ -43,10 +43,10 @@ RM = /opt/local/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5
+CMAKE_SOURCE_DIR = /Users/kaihe/gitlab/fem/armadillo-6.700.5
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5
+CMAKE_BINARY_DIR = /Users/kaihe/gitlab/fem/armadillo-6.700.5
 
 # Include any dependencies generated for this target.
 include CMakeFiles/armadillo.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/armadillo.dir/flags.make
 
 CMakeFiles/armadillo.dir/src/wrapper.cpp.o: CMakeFiles/armadillo.dir/flags.make
 CMakeFiles/armadillo.dir/src/wrapper.cpp.o: src/wrapper.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/armadillo.dir/src/wrapper.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/armadillo.dir/src/wrapper.cpp.o -c /Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/src/wrapper.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kaihe/gitlab/fem/armadillo-6.700.5/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/armadillo.dir/src/wrapper.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/armadillo.dir/src/wrapper.cpp.o -c /Users/kaihe/gitlab/fem/armadillo-6.700.5/src/wrapper.cpp
 
 CMakeFiles/armadillo.dir/src/wrapper.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/armadillo.dir/src/wrapper.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/src/wrapper.cpp > CMakeFiles/armadillo.dir/src/wrapper.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kaihe/gitlab/fem/armadillo-6.700.5/src/wrapper.cpp > CMakeFiles/armadillo.dir/src/wrapper.cpp.i
 
 CMakeFiles/armadillo.dir/src/wrapper.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/armadillo.dir/src/wrapper.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/src/wrapper.cpp -o CMakeFiles/armadillo.dir/src/wrapper.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kaihe/gitlab/fem/armadillo-6.700.5/src/wrapper.cpp -o CMakeFiles/armadillo.dir/src/wrapper.cpp.s
 
 CMakeFiles/armadillo.dir/src/wrapper.cpp.o.requires:
 
@@ -91,7 +91,7 @@ armadillo_EXTERNAL_OBJECTS =
 libarmadillo.6.70.5.dylib: CMakeFiles/armadillo.dir/src/wrapper.cpp.o
 libarmadillo.6.70.5.dylib: CMakeFiles/armadillo.dir/build.make
 libarmadillo.6.70.5.dylib: CMakeFiles/armadillo.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library libarmadillo.dylib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/kaihe/gitlab/fem/armadillo-6.700.5/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library libarmadillo.dylib"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/armadillo.dir/link.txt --verbose=$(VERBOSE)
 	$(CMAKE_COMMAND) -E cmake_symlink_library libarmadillo.6.70.5.dylib libarmadillo.6.dylib libarmadillo.dylib
 
@@ -115,6 +115,6 @@ CMakeFiles/armadillo.dir/clean:
 .PHONY : CMakeFiles/armadillo.dir/clean
 
 CMakeFiles/armadillo.dir/depend:
-	cd /Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5 && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5 /Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5 /Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5 /Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5 /Users/kaihe/gitlab/FEM_current_density/armadillo-6.700.5/CMakeFiles/armadillo.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/kaihe/gitlab/fem/armadillo-6.700.5 && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/kaihe/gitlab/fem/armadillo-6.700.5 /Users/kaihe/gitlab/fem/armadillo-6.700.5 /Users/kaihe/gitlab/fem/armadillo-6.700.5 /Users/kaihe/gitlab/fem/armadillo-6.700.5 /Users/kaihe/gitlab/fem/armadillo-6.700.5/CMakeFiles/armadillo.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/armadillo.dir/depend
 

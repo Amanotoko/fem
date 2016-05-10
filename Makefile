@@ -13,6 +13,7 @@ BUILD_DIR:= build
 ARMA_DIR:= armadillo-6.700.5/include
 TEST_SRC_DIR:= $(SRC_DIR)/test
 TEST_EXEC_DIR:= $(BUILD_DIR)/exec
+SUPERLU_DIR:= SuperLU_4.3/lib
 
 TEST_FILES:= $(wildcard $(TEST_SRC_DIR)/*.cc)
 SRC_FILES:= $(wildcard $(SRC_DIR)/*.cc)
@@ -21,8 +22,10 @@ INC_FILES:= $(wildcard $(INC_DIR)/*.h)
 
 TEST_EXEC:= $(patsubst $(TEST_SRC_DIR)/%.cc, $(TEST_EXEC_DIR)/%, $(TEST_FILES))
 
-INC:= -I$(INC_DIR) 
-LDFLAGS:= -larmadillo
+INC:= -I$(INC_DIR) -I/$(ARMA_DIR) -DARMA_DONT_USE_WRAPPER 
+LDFLAGS:= -lblas -llapack
+FLAGS:= $(SUPERLU_DIR)/libsuperlu_4.3.a
+
 
 default: binary test
 
@@ -36,7 +39,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cc $(INC_FILES)
 
 $(TEST_EXEC_DIR)/%: $(TEST_SRC_DIR)/%.cc $(INC_FILES) $(OBJ_FILES)
 	@echo "-- Compiling & Linking Test Case $<"
-	@$(CXX) $(OBJ_FILES) $(LDFLAGS) $(INC) -o $@ $<
+	@$(CXX) $(OBJ_FILES) $(FLAGS) $(LDFLAGS) $(INC) -o $@ $<
 
 clean:
 	@echo "-- Cleaning Object Directory..."
