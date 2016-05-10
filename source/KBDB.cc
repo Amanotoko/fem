@@ -10,11 +10,14 @@
 #
 =============================================================================*/
 
-#define DEBUG
+//#define DEBUG
 //#define DEBUG_node
-#define DEBUG_fill
+//#define DEBUG_fill
 
+//Nodecor is the node coornidates, we adjust the node coordinate to micro unit 10^-6
+const double UNIT = 1e-6;
 #include "KBDB.h"
+
 
 using namespace arma;
 using namespace std;
@@ -29,10 +32,17 @@ mat EleParser(Element &e, vector<Node> &nodes) {
 	
 	for (int i = 0; i < 4; ++i) {
 		NodeCor(i, 0) = 1; // first column: all 1s.
-		NodeCor(i, 1) = nodes[nodesInEle[i]].getx();
-		NodeCor(i, 2) = nodes[nodesInEle[i]].gety();
-		NodeCor(i, 3) = nodes[nodesInEle[i]].getz();
+#ifdef DEBUG_node
+		cout << nodesInEle[i] << " ";
+#endif
+		//Nodecor is the node coornidates, we adjust the node coordinate to micro unit 10^-6
+		NodeCor(i, 1) = nodes[nodesInEle[i]-1].getx()*UNIT;
+		NodeCor(i, 2) = nodes[nodesInEle[i]-1].gety()*UNIT;
+		NodeCor(i, 3) = nodes[nodesInEle[i]-1].getz()*UNIT;
 	}
+#ifdef DEBUG_node
+		cout << endl;
+#endif
 	return NodeCor; 
 }
 
@@ -43,7 +53,10 @@ void BMat(mat &nodecor, mat &Y, double &V) {
 	mat d = zeros<mat>(1,4);
 
 	mat Vmat = nodecor; //This nodecor is already 4-by-4 with all 1s first column
-	V = det(Vmat)/6;	
+	V = det(Vmat)/6.0;	
+#ifdef DEBUG_node
+	cout << "V = " << V << endl;
+#endif
 
 	for (int k = 0; k < 4; ++k) {
 		b(k) = cofactor(k, 1, Vmat);
@@ -130,6 +143,8 @@ sp_mat BDB(Mesh &myMesh, Boundary &myBoundary) {
 			}
 		}
 	}
-
+#ifdef DEBUG_fill
+	cout << KBDB << endl;
+#endif
 	return KBDB;
 }

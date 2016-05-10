@@ -15,6 +15,7 @@
 
 #include "geometry.h"
 #include "loadB.h"
+#include "boundary.h"
 #include "KBDB.h"
 #include "armadillo"
 #include <fstream>
@@ -102,9 +103,27 @@ int main(int argc, char** argv) {
 
 #ifdef DEBUG_A_SP
 	sp_mat A(10,10);
+	A.zeros();
+	A(1,1) = 1;
+	A(1,2) = 2;
+	A(1,5) = 3;
+	A(2,2) = 4;
+	A(2,5) = 7;
+	cout << A << endl;
+	A.row(1).zeros();
+	cout << A<< endl;
+
 #endif
 
-	sp_mat A;
-	A = BDB(myMesh, myBoundary);
+	//FEM Matrix
+	sp_mat K;
+	K = BDB(myMesh, myBoundary);
+	
+	//FEM right-hand side
+	int NodeNum = myMesh.getNodeNum();
+	vec f = zeros(NodeNum);
 
+	BoundaryUpdate(myMesh, myBoundary, K, f);
+	
+	vec x = spsolve(K, f);
 }

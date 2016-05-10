@@ -18,7 +18,7 @@ function [InfoList NodeInfo] = EleWithSurf(TetraEle_Node,TriEle_Node,SurfNo)
 % TriEle_Node = TriEle(:,[4 N3Col-2:N3Col]);      % Load the surface index and the node of the surface element
 % conv_surf = [10743 10792 10748 10747 10746 10745 10744];
 % SurfNo = conv_surf;
-%%%%%%
+%%%%%%  
 
 SSN = length(SurfNo);
 pos = [];

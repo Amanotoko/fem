@@ -15,9 +15,13 @@
 
 #include <stdio.h>
 #include "geometry.h"
+#include "loadB.h"
 #include "armadillo"
+#include <set>
 
-using namespace arma;
-cx_mat boundary(cx_mat S);
+void BoundaryUpdate(Mesh &myMesh, Boundary &myBoundary, arma::sp_mat &K, arma::vec &f);
+void EleWithSurf(std::vector<Element> &Eles, int surfID, std::set<int> &NodesOnBoundary); 
+
+arma::cx_mat boundary(arma::cx_mat S);
 
 #endif 

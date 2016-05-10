@@ -9,12 +9,54 @@
 # Description: 
 #
 =============================================================================*/
+//#define DEBUG
 
 #include <cmath>
+#include "geometry.h"
 #include "boundary.h"
+#include <set>
 const double pi = 3.1416;
 
+using namespace std;
 using namespace arma;
+
+void BoundaryUpdate(Mesh &myMesh, Boundary &myBoundary, sp_mat &K, vec &f) {
+	vector<int> surf = myBoundary.getSurf();
+	vector<double> surfVal = myBoundary.getSVal();
+
+	vector<Node> Nodes = myMesh.getNodeList(); 
+	vector<Element> Eles = myMesh.getEleList();
+
+	set<int> NodesOnBoundary;
+
+	for (int s = 0; s < surf.size(); ++s) {
+		EleWithSurf(Eles, surf[s], NodesOnBoundary);		
+#ifdef DEBUG
+		cout << surf[s] << endl;
+		for (set<int>::iterator it = NodesOnBoundary.begin(); it != NodesOnBoundary.end(); ++it)
+			cout << *it << " ";
+		cout << endl;
+#endif
+		for (set<int>::iterator it = NodesOnBoundary.begin(); it != NodesOnBoundary.end(); ++it) {
+			int NodeID = *it; 
+			K.row(NodeID).zeros();
+			K(NodeID, NodeID) = 1;
+			f(NodeID) = surfVal[s];
+		}
+	}
+}
+
+void EleWithSurf(vector<Element> &Eles, int surfID, set<int> &NodesOnBoundary) {
+	for (int i = 0; i < Eles.size(); ++i) {
+		int sID = Eles[i].getMaterial();
+		if (sID == surfID) {
+			vector<int> nodes = Eles[i].getNodeList();
+			for (int j = 0; j < nodes.size(); ++j){
+				NodesOnBoundary.insert(nodes[j]);
+			}
+		}
+	}
+} 
 
 cx_mat boundary(cx_mat S)
 {

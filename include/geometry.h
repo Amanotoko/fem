@@ -48,6 +48,7 @@ class Element{
 		Element(void) : type_(0), tagNum_(0), nodeNum_(0) {}	
 		void setEle(std::istream &in);
 		
+		int getType(void) const {return type_;}
 		std::vector<int> getNodeList(void) const { return node_; }
 		int getMaterial(void) const { 
 			if (tag_.size() > 0)
