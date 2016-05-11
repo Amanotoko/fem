@@ -20,7 +20,7 @@
 #include <set>
 
 void BoundaryUpdate(Mesh &myMesh, Boundary &myBoundary, arma::sp_mat &K, arma::vec &f);
-void EleWithSurf(std::vector<Element> &Eles, int surfID, std::set<int> &NodesOnBoundary); 
+void EleWithSurf(std::vector<Element> &Eles, int surfID, std::vector<int> &NodesOnBoundary); 
 
 arma::cx_mat boundary(arma::cx_mat S);
 

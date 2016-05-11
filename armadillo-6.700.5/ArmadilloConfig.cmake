@@ -5,11 +5,11 @@
 #  ARMADILLO_LIBRARIES    - libraries to link against
 
 # Tell the user project where to find our headers and libraries
-set(ARMADILLO_INCLUDE_DIRS "/Users/kaihe/gitlab/fem/armadillo-6.700.5;/Users/kaihe/gitlab/fem/armadillo-6.700.5")
-set(ARMADILLO_LIBRARY_DIRS "/Users/kaihe/gitlab/fem/armadillo-6.700.5")
+set(ARMADILLO_INCLUDE_DIRS "/home/khe/gitlab/fem/armadillo-6.700.5;/home/khe/gitlab/fem/armadillo-6.700.5")
+set(ARMADILLO_LIBRARY_DIRS "/home/khe/gitlab/fem/armadillo-6.700.5")
 
 # Our library dependencies (contains definitions for IMPORTED targets)
-include("/Users/kaihe/gitlab/fem/armadillo-6.700.5/ArmadilloLibraryDepends.cmake")
+include("/home/khe/gitlab/fem/armadillo-6.700.5/ArmadilloLibraryDepends.cmake")
 
 # These are IMPORTED targets created by ArmadilloLibraryDepends.cmake
 set(ARMADILLO_LIBRARIES armadillo)

@@ -9,13 +9,14 @@
 # Description: 
 #
 =============================================================================*/
-//#define DEBUG
+#define DEBUG
 //#define DEBUG_RHS
 
 #include <cmath>
 #include "geometry.h"
 #include "boundary.h"
 #include <set>
+#include <iterator>
 const double pi = 3.1416;
 
 using namespace std;
@@ -28,21 +29,23 @@ void BoundaryUpdate(Mesh &myMesh, Boundary &myBoundary, sp_mat &K, vec &f) {
 	vector<Node> Nodes = myMesh.getNodeList(); 
 	vector<Element> Eles = myMesh.getEleList();
 
-	set<int> NodesOnBoundary;
-
 	for (int s = 0; s < surf.size(); ++s) {
-		EleWithSurf(Eles, surf[s], NodesOnBoundary);		
+		vector<int> ElesOnBoundary;
+		EleWithSurf(Eles, surf[s], ElesOnBoundary);		
+		
 #ifdef DEBUG_RHS
 		cout << s << " " << surfVal[s] << endl;
 #endif
 #ifdef DEBUG
+		cout << endl;
 		cout << s << " " << surf[s] << endl;
-		for (set<int>::iterator it = NodesOnBoundary.begin(); it != NodesOnBoundary.end(); ++it)
-			cout << *it << " ";
+		for (int i = 0; i < ElesOnBoundary.size(); ++i)
+			cout << ElesOnBoundary[i] << " ";
 		cout << endl;
 #endif
-		for (set<int>::iterator it = NodesOnBoundary.begin(); it != NodesOnBoundary.end(); ++it) {
-			int NodeID = *it; 
+		for (int i = 0; i < ElesOnBoundary.size(); ++i){
+			int EleID = ElesOnBoundary[i]; 
+			int NodeID = Eles[EleID].getNodeList()[3];
 			K.row(NodeID).zeros();
 			K(NodeID, NodeID) = 1;
 			f(NodeID) = surfVal[s];
@@ -52,16 +55,37 @@ void BoundaryUpdate(Mesh &myMesh, Boundary &myBoundary, sp_mat &K, vec &f) {
 #endif
 }
 
-void EleWithSurf(vector<Element> &Eles, int surfID, set<int> &NodesOnBoundary) {
+void EleWithSurf(vector<Element> &Eles, int surfID, vector<int> &ElesOnBoundary) {
+	set<int> NodesOnBoundary;
 	for (int i = 0; i < Eles.size(); ++i) {
+		int type = Eles[i].getType();
+		if (type != 2) break; // only search triangular
 		int sID = Eles[i].getMaterial();
 		if (sID == surfID) {
 			vector<int> nodes = Eles[i].getNodeList();
-			for (int j = 0; j < nodes.size(); ++j){
+			for (int j = 0; j < nodes.size(); ++j)
 				NodesOnBoundary.insert(nodes[j]);
-			}
 		}
 	}
+#ifdef DEBUG
+	copy(NodesOnBoundary.begin(), NodesOnBoundary.end(), ostream_iterator<int> (cout, " "));	
+#endif
+	// Find Elements with 3 nodes on the surface
+	for (int i = 0; i < Eles.size(); ++i) {
+		int type = Eles[i].getType();
+		if (type != 4) continue; //only search tetra
+		
+		vector<int> nodes = Eles[i].getNodeList();
+		int count = 0;
+		for (int j = 0; j < nodes.size(); ++j) {
+			int node = nodes[j];
+			if (NodesOnBoundary.find(node) != NodesOnBoundary.end())
+				count += 1;
+		}
+		if (count == 3)
+			ElesOnBoundary.push_back(i);
+	}
+	
 } 
 
 cx_mat boundary(cx_mat S)

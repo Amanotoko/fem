@@ -119,6 +119,7 @@ int main(int argc, char** argv) {
 	//FEM Matrix
 	sp_mat K;
 	K = BDB(myMesh, myBoundary);
+//	cout << nonzeros(K).n_elem << endl;
 	
 	//FEM right-hand side
 	int NodeNum = myMesh.getNodeNum();
@@ -126,6 +127,9 @@ int main(int argc, char** argv) {
 
 	BoundaryUpdate(myMesh, myBoundary, K, f);
 	
+//	cout << f << endl;
+//	cout << nonzeros(K).n_elem << endl;
 	vec x = spsolve(K, f);
-	dump(oFileName, iFileName, f);	
+
+	dump(oFileName, iFileName, x);	
 }

@@ -16,14 +16,24 @@
 #
 #  The machine (platform) identifier to append to the library names
 #
-PLAT = _mac_x
+PLAT = _linux
 
 #
 #  The name of the libraries to be created/linked to
 #
 SuperLUroot	= $(HOME)/gitlab/fem/SuperLU_4.3
 SUPERLULIB   	= $(SuperLUroot)/lib/libsuperlu_4.3.a
-BLASLIB   	= $(SuperLUroot)/lib/libblas.a
+
+#BLASLIB   	= $(SuperLUroot)/lib/libblas.a
+
+## ATLAS BLAS causes single-precision to fail
+#BLASDEF = -DUSE_VENDOR_BLAS
+#BLASLIB   	= -L/usr/lib/atlas -lblas
+
+## This BLAS causes single-precision to fail the test in SuperLU
+BLASDEF 	= -DUSE_VENDOR_BLAS
+BLASLIB 	= -L/usr/lib -lblas
+
 TMGLIB       	= libtmglib.a
 LIBS		= $(SUPERLULIB) $(BLASLIB)
 
@@ -36,20 +46,20 @@ ARCHFLAGS    = cr
 RANLIB       = ranlib
 
 CC           = gcc
-CFLAGS       = -O2 
+CFLAGS       = -O3 -fPIC
 NOOPTS       = 
-FORTRAN	     = /Applications/Absoft/bin/f90
-FFLAGS       = -O3 -cpu:g5 -YEXT_NAMES=LCS -s -YEXT_SFX=_
+FORTRAN	     = g77
+FFLAGS       = -O2
 LOADER       = $(CC)
 LOADOPTS     =
 
 #
 #  C preprocessor defs for compilation for the Fortran interface
-#  (-DNoChange, -DAdd_, -DUpCase, or -DAdd__)
+#  (-DNoChange, -DAdd_, -DAdd__, or -DUpCase)
 #
 CDEFS        = -DAdd_
 #
 # The directory in which Matlab is installed
 #
-MATLAB	     = /Applications/MATLAB74/bin/matlab
+MATLAB	     = /usr/sww/matlab
 

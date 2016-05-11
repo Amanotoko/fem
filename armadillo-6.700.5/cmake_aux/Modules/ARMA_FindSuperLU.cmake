@@ -5,6 +5,8 @@
 #  SuperLU_LIBRARY      - Link this to use SuperLU
 #  SuperLU_INCLUDE_DIR  - directory of SuperLU headers
 
+
+
 find_path(SuperLU_INCLUDE_DIR slu_cdefs.h
   /usr/include/superlu/
   /usr/include/SuperLU/
@@ -16,11 +18,12 @@ find_path(SuperLU_INCLUDE_DIR slu_cdefs.h
   /opt/local/include/SuperLU/
   /opt/local/include/
   /Users/kaihe/gitlab/fem/SuperLU_4.3/SRC/
+  /home/khe/gitlab/fem/SuperLU_4.3/SRC/
 )
 
 find_library(SuperLU_LIBRARY
   NAMES libsuperlu_4.3.a
-  PATHS ${CMAKE_SYSTEM_LIBRARY_PATH} /usr/lib64 /usr/lib /usr/local/lib64 /usr/local/lib /opt/local/lib64 /opt/local/lib /Users/kaihe/gitlab/fem/SuperLU_4.3/lib/
+  PATHS ${CMAKE_SYSTEM_LIBRARY_PATH} /usr/lib64 /usr/lib /usr/local/lib64 /usr/local/lib /opt/local/lib64 /opt/local/lib /Users/kaihe/gitlab/fem/SuperLU_4.3/lib/ /home/khe/gitlab/fem/SuperLU_4.3/lib/
 )
 
 SET(SuperLU_FOUND NO)
