@@ -10,7 +10,7 @@ SRC_DIR:= source
 INC_DIR:= include
 EXP_DIR:= example
 BUILD_DIR:= build
-ARMA_DIR:= armadillo-6.700.5/include
+ARMA_DIR:= armadillo-4.320.0/include
 TEST_SRC_DIR:= $(SRC_DIR)/test
 TEST_EXEC_DIR:= $(BUILD_DIR)/exec
 SUPERLU_DIR:= SuperLU_4.3/lib
@@ -22,8 +22,8 @@ INC_FILES:= $(wildcard $(INC_DIR)/*.h)
 
 TEST_EXEC:= $(patsubst $(TEST_SRC_DIR)/%.cc, $(TEST_EXEC_DIR)/%, $(TEST_FILES))
 
-INC:= -I$(INC_DIR) -I/$(ARMA_DIR) -DARMA_DONT_USE_WRAPPER 
-LDFLAGS:= -lblas -llapack
+INC:= -I$(INC_DIR) 
+LDFLAGS:= -larmadillo
 FLAGS:= $(SUPERLU_DIR)/libsuperlu_4.3.a
 
 

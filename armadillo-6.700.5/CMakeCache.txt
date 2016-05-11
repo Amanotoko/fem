@@ -149,13 +149,13 @@ DETECT_HDF5:BOOL=OFF
 SuperLU_INCLUDE_DIR:PATH=/Users/kaihe/gitlab/fem/SuperLU_4.3/SRC
 
 //Path to a library.
-SuperLU_LIBRARY:FILEPATH=SuperLU_LIBRARY-NOTFOUND
+SuperLU_LIBRARY:FILEPATH=/Users/kaihe/gitlab/fem/SuperLU_4.3/lib/libsuperlu_4.3.a
 
 //Value Computed by CMake
 armadillo_BINARY_DIR:STATIC=/Users/kaihe/gitlab/fem/armadillo-6.700.5
 
 //Dependencies for the target
-armadillo_LIB_DEPENDS:STATIC=general;-framework Accelerate;
+armadillo_LIB_DEPENDS:STATIC=general;-framework Accelerate;general;/Users/kaihe/gitlab/fem/SuperLU_4.3/lib/libsuperlu_4.3.a;
 
 //Value Computed by CMake
 armadillo_SOURCE_DIR:STATIC=/Users/kaihe/gitlab/fem/armadillo-6.700.5

@@ -10,6 +10,7 @@
 #
 =============================================================================*/
 //#define DEBUG
+//#define DEBUG_RHS
 
 #include <cmath>
 #include "geometry.h"
@@ -31,8 +32,11 @@ void BoundaryUpdate(Mesh &myMesh, Boundary &myBoundary, sp_mat &K, vec &f) {
 
 	for (int s = 0; s < surf.size(); ++s) {
 		EleWithSurf(Eles, surf[s], NodesOnBoundary);		
+#ifdef DEBUG_RHS
+		cout << s << " " << surfVal[s] << endl;
+#endif
 #ifdef DEBUG
-		cout << surf[s] << endl;
+		cout << s << " " << surf[s] << endl;
 		for (set<int>::iterator it = NodesOnBoundary.begin(); it != NodesOnBoundary.end(); ++it)
 			cout << *it << " ";
 		cout << endl;
@@ -44,6 +48,8 @@ void BoundaryUpdate(Mesh &myMesh, Boundary &myBoundary, sp_mat &K, vec &f) {
 			f(NodeID) = surfVal[s];
 		}
 	}
+#ifdef DEBUG_RHS
+#endif
 }
 
 void EleWithSurf(vector<Element> &Eles, int surfID, set<int> &NodesOnBoundary) {

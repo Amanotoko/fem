@@ -1,4 +1,5 @@
 /usr/local/include/armadillo
+/usr/local/include/armadillo_bits/.config.hpp.swp
 /usr/local/include/armadillo_bits/access.hpp
 /usr/local/include/armadillo_bits/arma_cmath.hpp
 /usr/local/include/armadillo_bits/arma_config.hpp

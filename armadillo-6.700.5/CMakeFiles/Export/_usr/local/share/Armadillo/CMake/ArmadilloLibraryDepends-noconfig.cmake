@@ -8,7 +8,7 @@ set(CMAKE_IMPORT_FILE_VERSION 1)
 # Import target "armadillo" for configuration ""
 set_property(TARGET armadillo APPEND PROPERTY IMPORTED_CONFIGURATIONS NOCONFIG)
 set_target_properties(armadillo PROPERTIES
-  IMPORTED_LINK_INTERFACE_LIBRARIES_NOCONFIG "-framework Accelerate"
+  IMPORTED_LINK_INTERFACE_LIBRARIES_NOCONFIG "-framework Accelerate;/Users/kaihe/gitlab/fem/SuperLU_4.3/lib/libsuperlu_4.3.a"
   IMPORTED_LOCATION_NOCONFIG "/usr/local/lib/libarmadillo.6.70.5.dylib"
   IMPORTED_SONAME_NOCONFIG "libarmadillo.6.dylib"
   )

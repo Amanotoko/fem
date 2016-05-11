@@ -32,14 +32,14 @@
 #endif
 
 #if !defined(ARMA_USE_SUPERLU)
-/* #undef ARMA_USE_SUPERLU */
+#define ARMA_USE_SUPERLU
 //// Uncomment the above line if you have SuperLU.
 //// SuperLU is used for solving sparse linear systems via spsolve()
 //// Caveat: only SuperLU version 4.3 can be used!
 #endif
 
 #if !defined(ARMA_SUPERLU_INCLUDE_DIR)
-#define ARMA_SUPERLU_INCLUDE_DIR /
+#define ARMA_SUPERLU_INCLUDE_DIR /Users/kaihe/gitlab/fem/SuperLU_4.3/SRC/
 //// If you're using SuperLU and want to explicitly include the SuperLU headers,
 //// uncomment the above define and specify the appropriate include directory.
 //// Make sure the directory has a trailing /
@@ -208,5 +208,5 @@
 // ARMA_AUX_LIBS lists the libraries required by Armadillo on this system, and
 // ARMA_AUX_INCDIRS lists the include directories required by Armadillo on this system.
 // Do not use these unless you know what you are doing.
-#define ARMA_AUX_LIBS -framework Accelerate
-#define ARMA_AUX_INCDIRS 
+#define ARMA_AUX_LIBS -framework Accelerate;/Users/kaihe/gitlab/fem/SuperLU_4.3/lib/libsuperlu_4.3.a
+#define ARMA_AUX_INCDIRS /Users/kaihe/gitlab/fem/SuperLU_4.3/SRC

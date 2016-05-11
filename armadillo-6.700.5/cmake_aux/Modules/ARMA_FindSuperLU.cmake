@@ -1,4 +1,4 @@
-# Try to find SuperLU 4.x
+# Try to find SuperLU 3.x
 # Once done, this will define
 #
 #  SuperLU_FOUND        - system has SuperLU
@@ -19,8 +19,8 @@ find_path(SuperLU_INCLUDE_DIR slu_cdefs.h
 )
 
 find_library(SuperLU_LIBRARY
-  NAMES superlu
-  PATHS ${CMAKE_SYSTEM_LIBRARY_PATH} /usr/lib64 /usr/lib /usr/local/lib64 /usr/local/lib /opt/local/lib64 /opt/local/lib
+  NAMES libsuperlu_4.3.a
+  PATHS ${CMAKE_SYSTEM_LIBRARY_PATH} /usr/lib64 /usr/lib /usr/local/lib64 /usr/local/lib /opt/local/lib64 /opt/local/lib /Users/kaihe/gitlab/fem/SuperLU_4.3/lib/
 )
 
 SET(SuperLU_FOUND NO)

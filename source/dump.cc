@@ -44,5 +44,15 @@ void dump(string &outputFileName, string &inputFileName, vec &f) {
 
 	double TimeStep = 0;
 	fout << TimeStep << endl;
-
+	
+	int num_component = 1;
+	fout << num_component << endl;
+	
+	fout << f.n_elem << endl;
+	for (int i = 1; i <= f.n_elem; ++i) {
+		fout << i << " " << f(i-1) << endl;	
+	}
+	fout << "$EndNodeData" << endl;
+	
+	fout.close();
 }

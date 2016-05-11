@@ -126,6 +126,6 @@ int main(int argc, char** argv) {
 
 	BoundaryUpdate(myMesh, myBoundary, K, f);
 	
-	dump(oFileName, iFileName, f);	
 	vec x = spsolve(K, f);
+	dump(oFileName, iFileName, f);	
 }

@@ -6,5 +6,5 @@ CXX_FLAGS =  -stdlib=libc++ -fPIC
 
 CXX_DEFINES = -Darmadillo_EXPORTS
 
-CXX_INCLUDES = -I/Users/kaihe/gitlab/fem/armadillo-6.700.5/tmp/include 
+CXX_INCLUDES = -I/Users/kaihe/gitlab/fem/armadillo-6.700.5/tmp/include -I/Users/kaihe/gitlab/fem/SuperLU_4.3/SRC 
 
