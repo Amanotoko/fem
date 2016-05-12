@@ -45,13 +45,17 @@ void BoundaryUpdateE(Mesh &myMesh, Boundary &myBoundary, sp_mat &K, vec &f) {
 #endif
 		for (int i = 0; i < ElesOnBoundary.size(); ++i){
 			int EleID = ElesOnBoundary[i]; 
-			int NodeID = Eles[EleID].getNodeList()[3];
+			int NodeID = Eles[EleID].getNodeList()[3]-1;
+#ifdef DEBUG
+			cout << NodeID << " ";
+#endif
 			K.row(NodeID).zeros();
 			K(NodeID, NodeID) = 1;
 			f(NodeID) = surfVal[s];
 		}
 	}
-#ifdef DEBUG_RHS
+#ifdef DEBUG
+	cout << endl;
 #endif
 }
 
@@ -77,7 +81,7 @@ void BoundaryUpdateN(Mesh &myMesh, Boundary &myBoundary, sp_mat &K, vec &f) {
 		cout << endl;
 #endif
 		for (int i = 0; i < NodesOnBoundary.size(); ++i){
-			int NodeID = NodesOnBoundary[i]; 
+			int NodeID = NodesOnBoundary[i]-1; 
 			K.row(NodeID).zeros();
 			K(NodeID, NodeID) = 1;
 			f(NodeID) = surfVal[s];
@@ -115,7 +119,7 @@ void EleWithSurf(vector<Element> &Eles, int surfID, vector<int> &ElesOnBoundary)
 				NodesOnBoundary.insert(nodes[j]);
 		}
 	}
-#ifdef DEBUG
+#ifdef DEBUG_RHS
 	copy(NodesOnBoundary.begin(), NodesOnBoundary.end(), ostream_iterator<int> (cout, " "));	
 #endif
 	// Find Elements with 3 nodes on the surface

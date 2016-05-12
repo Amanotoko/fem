@@ -12,6 +12,8 @@
 
 //#define DEBUG
 
+const double UNIT = 1e-6;
+
 #include "groupNodes.h"
 #include <iostream>
 #include <iterator>
@@ -73,6 +75,10 @@ double CalE(int nodeID, set<int> &closestNodes, vector<Node> &NodeList, vec& vol
 		double dy = n1.gety() - n2.gety();
 		double dz = n1.getz() - n2.getz();
 		
+		dx *= UNIT;
+		dy *= UNIT;
+		dz *= UNIT;
+
 		double dist = sqrt(dx*dx + dy*dy + dz*dz);
 
 		double E_mag = dV/dist;

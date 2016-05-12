@@ -9,9 +9,11 @@
 # Description: 
 #
 =============================================================================*/
-
+//#define DEUBG
 //#define DEBUG_A_SP
 //#define DEBUG_IO
+
+const double ro_Cu = 1.7e-8;
 
 #include "geometry.h"
 #include "loadB.h"
@@ -126,18 +128,21 @@ int main(int argc, char** argv) {
 	int NodeNum = myMesh.getNodeNum();
 	vec f = zeros(NodeNum);
 
-//	BoundaryUpdateE(myMesh, myBoundary, K, f);
-	BoundaryUpdateN(myMesh, myBoundary, K, f);
-	
-//	cout << f << endl;
+	BoundaryUpdateE(myMesh, myBoundary, K, f);
+//	BoundaryUpdateN(myMesh, myBoundary, K, f);
+#ifdef DEBUG
+	sp_vec ff(f);
+	cout << ff << endl;
 //	cout << nonzeros(K).n_elem << endl;
+#endif
 	vec x = spsolve(K, f);
 	
 	vector<set<int> > NodeSet;
 	vec E;
 	E.resize(x.n_elem);
 	groupNodes(NodeSet, myMesh, x, E);
-
+	
+	E /= ro_Cu;
 //	dump(oFileName, iFileName, x);	
 	dump(oFileName, iFileName, E);	
 }
