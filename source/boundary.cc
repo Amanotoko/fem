@@ -9,7 +9,7 @@
 # Description: 
 #
 =============================================================================*/
-#define DEBUG
+//#define DEBUG
 //#define DEBUG_RHS
 
 #include <cmath>
@@ -22,7 +22,7 @@ const double pi = 3.1416;
 using namespace std;
 using namespace arma;
 
-void BoundaryUpdate(Mesh &myMesh, Boundary &myBoundary, sp_mat &K, vec &f) {
+void BoundaryUpdateE(Mesh &myMesh, Boundary &myBoundary, sp_mat &K, vec &f) {
 	vector<int> surf = myBoundary.getSurf();
 	vector<double> surfVal = myBoundary.getSVal();
 
@@ -53,6 +53,54 @@ void BoundaryUpdate(Mesh &myMesh, Boundary &myBoundary, sp_mat &K, vec &f) {
 	}
 #ifdef DEBUG_RHS
 #endif
+}
+
+void BoundaryUpdateN(Mesh &myMesh, Boundary &myBoundary, sp_mat &K, vec &f) {
+	vector<int> surf = myBoundary.getSurf();
+	vector<double> surfVal = myBoundary.getSVal();
+
+	vector<Node> Nodes = myMesh.getNodeList(); 
+	vector<Element> Eles = myMesh.getEleList();
+
+	for (int s = 0; s < surf.size(); ++s) {
+		vector<int> NodesOnBoundary;
+		NodeWithSurf(Eles, surf[s], NodesOnBoundary);		
+		
+#ifdef DEBUG_RHS
+		cout << s << " " << surfVal[s] << endl;
+#endif
+#ifdef DEBUG
+		cout << endl;
+		cout << s << " " << surf[s] << endl;
+		for (int i = 0; i < NodesOnBoundary.size(); ++i)
+			cout << NodesOnBoundary[i] << " ";
+		cout << endl;
+#endif
+		for (int i = 0; i < NodesOnBoundary.size(); ++i){
+			int NodeID = NodesOnBoundary[i]; 
+			K.row(NodeID).zeros();
+			K(NodeID, NodeID) = 1;
+			f(NodeID) = surfVal[s];
+		}
+	}
+#ifdef DEBUG_RHS
+#endif
+}
+
+void NodeWithSurf(vector<Element> &Eles, int surfID, vector<int> &NOB) {
+	set<int> NodesOnBoundary;
+	for (int i = 0; i < Eles.size(); ++i) {
+		int type = Eles[i].getType();
+		if (type != 2) break; // only search triangular
+		int sID = Eles[i].getMaterial();
+		if (sID == surfID) {
+			vector<int> nodes = Eles[i].getNodeList();
+			for (int j = 0; j < nodes.size(); ++j)
+				NodesOnBoundary.insert(nodes[j]);
+		}
+	}
+	NOB.resize(NodesOnBoundary.size());	
+	copy(NodesOnBoundary.begin(), NodesOnBoundary.end(), NOB.begin());
 }
 
 void EleWithSurf(vector<Element> &Eles, int surfID, vector<int> &ElesOnBoundary) {

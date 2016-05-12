@@ -24,7 +24,7 @@ TEST_EXEC:= $(patsubst $(TEST_SRC_DIR)/%.cc, $(TEST_EXEC_DIR)/%, $(TEST_FILES))
 
 INC:= -I$(INC_DIR) 
 LDFLAGS:= -larmadillo
-FLAGS:= $(SUPERLU_DIR)/libsuperlu_4.3.a
+#FLAGS:= $(SUPERLU_DIR)/libsuperlu_4.3.a
 
 
 default: binary test

@@ -17,7 +17,7 @@ for i = 1:l
     E_z = E_z + E_mag*dz/d;
 end
 
-E_x = E_x/l;
-E_y = E_y/l;
-E_z = E_z/l;
+%E_x = E_x/l;
+%E_y = E_y/l;
+%E_z = E_z/l;
 E = sqrt(E_x^2+ E_y^2+E_z^2);

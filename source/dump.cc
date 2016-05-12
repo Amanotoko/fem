@@ -30,7 +30,7 @@ void dump(string &outputFileName, string &inputFileName, vec &f) {
 	int num_of_string_tag = 1;
 	fout << num_of_string_tag << endl;
 
-	string name_of_view = "Current Density View";
+	string name_of_view = "\"Current Density View\"";
 	fout << name_of_view << endl;
 
 	int num_of_real_tag = 1;

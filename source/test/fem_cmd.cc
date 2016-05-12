@@ -18,6 +18,7 @@
 #include "boundary.h"
 #include "KBDB.h"
 #include "dump.h"
+#include "groupNodes.h"
 #include "armadillo"
 #include <fstream>
 #include <string>
@@ -125,11 +126,18 @@ int main(int argc, char** argv) {
 	int NodeNum = myMesh.getNodeNum();
 	vec f = zeros(NodeNum);
 
-	BoundaryUpdate(myMesh, myBoundary, K, f);
+//	BoundaryUpdateE(myMesh, myBoundary, K, f);
+	BoundaryUpdateN(myMesh, myBoundary, K, f);
 	
 //	cout << f << endl;
 //	cout << nonzeros(K).n_elem << endl;
 	vec x = spsolve(K, f);
+	
+	vector<set<int> > NodeSet;
+	vec E;
+	E.resize(x.n_elem);
+	groupNodes(NodeSet, myMesh, x, E);
 
-	dump(oFileName, iFileName, x);	
+//	dump(oFileName, iFileName, x);	
+	dump(oFileName, iFileName, E);	
 }
