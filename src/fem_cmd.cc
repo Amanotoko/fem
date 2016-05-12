@@ -39,9 +39,9 @@ int main(int argc, char** argv) {
 	Mesh myMesh;
 	Boundary myBoundary;
 
-	string iFileName;
-	string bFileName;
-	string oFileName = "test.out";
+	string iFileName = "";
+	string bFileName = "";
+	string oFileName = "";
 
 	if (argc < 5) {
 		help_message();
@@ -65,7 +65,22 @@ int main(int argc, char** argv) {
 			bFileName = argv[i + 1];
 			i += 2;
 		}
+		else if (strcmp(argv[i], "-o") == 0) {
+			if (i + 1 >= argc) {
+				help_message();
+				return -1;
+			}
+			oFileName = argv[i + 1];
+			i += 2;
+		}
 	}
+	
+	if (iFileName == "" || bFileName == "") {
+		help_message();
+		return -1;
+	}
+	if (oFileName == "")
+		oFileName = iFileName + ".out";
 
 	cout << "Input File: " << iFileName << endl;
 	cout << "Boundary File: " << bFileName << endl;
