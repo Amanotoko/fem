@@ -6,13 +6,14 @@
 
 CXX:= g++
 
+MAIN:= fem_cmd
 SRC_DIR:= source
 INC_DIR:= include
 EXP_DIR:= example
 BUILD_DIR:= build
 ARMA_DIR:= armadillo-6.700.5/include
-TEST_SRC_DIR:= $(SRC_DIR)/test
-TEST_EXEC_DIR:= $(BUILD_DIR)/exec
+TEST_SRC_DIR:= $(SRC_DIR)/main
+TEST_EXEC_DIR:= $(BUILD_DIR)/bin
 SUPERLU_DIR:= SuperLU_4.3/lib
 
 TEST_FILES:= $(wildcard $(TEST_SRC_DIR)/*.cc)
@@ -37,9 +38,9 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cc $(INC_FILES)
 	@echo "-- Compiling C++ File $<"
 	@$(CXX) $(CFLAGS) $(INC) -o $@ -c $<
 
-$(TEST_EXEC_DIR)/%: $(TEST_SRC_DIR)/%.cc $(INC_FILES) $(OBJ_FILES)
-	@echo "-- Compiling & Linking Test Case $<"
-	@$(CXX) $(OBJ_FILES) $(FLAGS) $(LDFLAGS) $(INC) -o $@ $<
+$(TEST_EXEC_DIR)/$(MAIN): $(INC_FILES) $(OBJ_FILES)
+	@echo "-- Compiling & Linking Main Case $(MAIN)"
+	@$(CXX) $(OBJ_FILES) $(FLAGS) $(LDFLAGS) $(INC) -o $@ 
 
 clean:
 	@echo "-- Cleaning Object Directory..."
