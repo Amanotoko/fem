@@ -6,7 +6,7 @@
 
 # Tell the user project where to find our headers and libraries
 set(ARMADILLO_INCLUDE_DIRS "/usr/local/include")
-set(ARMADILLO_LIBRARY_DIRS "/usr/local/lib")
+set(ARMADILLO_LIBRARY_DIRS "/usr/local/lib64")
 
 # Our library dependencies (contains definitions for IMPORTED targets)
 include("/usr/local/share/Armadillo/CMake/ArmadilloLibraryDepends.cmake")

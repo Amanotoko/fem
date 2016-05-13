@@ -150,7 +150,9 @@ int main(int argc, char** argv) {
 	cout << ff << endl;
 //	cout << nonzeros(K).n_elem << endl;
 #endif
-	vec x = spsolve(K, f);
+	mat KK(K);
+	//vec x = spsolve(K, f);
+	vec x = solve(KK, f);
 	
 	vector<set<int> > NodeSet;
 	vec E;

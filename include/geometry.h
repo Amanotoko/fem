@@ -13,6 +13,8 @@
 #ifndef __geometry_h__
 #define __geometry_h__
 
+#include<cblas.h>
+
 #include<string>
 #include<iostream>
 #include<vector>

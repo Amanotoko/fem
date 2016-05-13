@@ -26,7 +26,7 @@
 #endif
 
 #if !defined(ARMA_USE_ARPACK)
-#define ARMA_USE_ARPACK
+/* #undef ARMA_USE_ARPACK */
 //// Uncomment the above line if you have ARPACK or a high-speed replacement for ARPACK.
 //// ARPACK is required for eigendecompositions of sparse matrices, eg. eigs_sym(), svds() 
 #endif
@@ -39,7 +39,7 @@
 #endif
 
 #if !defined(ARMA_SUPERLU_INCLUDE_DIR)
-#define ARMA_SUPERLU_INCLUDE_DIR /home/khe/gitlab/fem/SuperLU_4.3/SRC/
+#define ARMA_SUPERLU_INCLUDE_DIR /home/eegrad/khe/locker/gitlab/FEM_current_density/SuperLU_4.3/SRC/
 //// If you're using SuperLU and want to explicitly include the SuperLU headers,
 //// uncomment the above define and specify the appropriate include directory.
 //// Make sure the directory has a trailing /
@@ -69,8 +69,8 @@
 // #define ARMA_USE_MKL_ALLOC
 //// Uncomment the above line if you want to use Intel MKL mkl_malloc() and mkl_free() instead of standard malloc() and free()
 
-/* #undef ARMA_USE_ATLAS */
-#define ARMA_ATLAS_INCLUDE_DIR /
+#define ARMA_USE_ATLAS
+#define ARMA_ATLAS_INCLUDE_DIR /usr/include/
 //// If you're using ATLAS and the compiler can't find cblas.h and/or clapack.h
 //// uncomment the above define and specify the appropriate include directory.
 //// Make sure the directory has a trailing /
@@ -178,7 +178,7 @@
 #if defined(ARMA_USE_WRAPPER)
   #if defined(ARMA_USE_CXX11)
     #if !defined(ARMA_USE_EXTERN_CXX11_RNG)
-      #define ARMA_USE_EXTERN_CXX11_RNG
+/* #undef ARMA_USE_EXTERN_CXX11_RNG */
     #endif
   #endif
 #endif
@@ -208,5 +208,5 @@
 // ARMA_AUX_LIBS lists the libraries required by Armadillo on this system, and
 // ARMA_AUX_INCDIRS lists the include directories required by Armadillo on this system.
 // Do not use these unless you know what you are doing.
-#define ARMA_AUX_LIBS /usr/lib/libblas.so;/usr/lib/liblapack.so;/usr/lib/libarpack.so;/home/khe/gitlab/fem/SuperLU_4.3/lib/libsuperlu_4.3.a
-#define ARMA_AUX_INCDIRS /home/khe/gitlab/fem/SuperLU_4.3/SRC
+#define ARMA_AUX_LIBS /usr/lib64/atlas/libatlas.so;/usr/lib64/libblas.so;/usr/lib64/liblapack.so;/home/eegrad/khe/locker/gitlab/FEM_current_density/SuperLU_4.3/lib/libsuperlu_4.3.a
+#define ARMA_AUX_INCDIRS /home/eegrad/khe/locker/gitlab/FEM_current_density/SuperLU_4.3/SRC

@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC  -O2   -Wl,--no-as-needed -shared -Wl,-soname,libarmadillo.so.6 -o CMakeFiles/CMakeRelink.dir/libarmadillo.so.6.700.5 CMakeFiles/armadillo.dir/src/wrapper.cpp.o /usr/lib64/atlas/libatlas.so -lblas -llapack /home/eegrad/khe/locker/gitlab/FEM_current_density/SuperLU_4.3/lib/libsuperlu_4.3.a 

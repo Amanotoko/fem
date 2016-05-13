@@ -46,11 +46,14 @@ RM = /usr/bin/cmake -E remove -f
 # Escaping for special characters.
 EQUALS = =
 
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = /usr/bin/ccmake
+
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/khe/gitlab/fem/armadillo-6.700.5
+CMAKE_SOURCE_DIR = /home/eegrad/khe/locker/gitlab/FEM_current_density/armadillo-6.700.5
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/khe/gitlab/fem/armadillo-6.700.5
+CMAKE_BINARY_DIR = /home/eegrad/khe/locker/gitlab/FEM_current_density/armadillo-6.700.5
 
 #=============================================================================
 # Target rules for target CMakeFiles/armadillo.dir
@@ -59,7 +62,7 @@ CMAKE_BINARY_DIR = /home/khe/gitlab/fem/armadillo-6.700.5
 CMakeFiles/armadillo.dir/all:
 	$(MAKE) -f CMakeFiles/armadillo.dir/build.make CMakeFiles/armadillo.dir/depend
 	$(MAKE) -f CMakeFiles/armadillo.dir/build.make CMakeFiles/armadillo.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/khe/gitlab/fem/armadillo-6.700.5/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/eegrad/khe/locker/gitlab/FEM_current_density/armadillo-6.700.5/CMakeFiles  1
 	@echo "Built target armadillo"
 .PHONY : CMakeFiles/armadillo.dir/all
 
@@ -69,14 +72,23 @@ all: CMakeFiles/armadillo.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/armadillo.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/khe/gitlab/fem/armadillo-6.700.5/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/eegrad/khe/locker/gitlab/FEM_current_density/armadillo-6.700.5/CMakeFiles 1
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/armadillo.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/khe/gitlab/fem/armadillo-6.700.5/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/eegrad/khe/locker/gitlab/FEM_current_density/armadillo-6.700.5/CMakeFiles 0
 .PHONY : CMakeFiles/armadillo.dir/rule
 
 # Convenience name for target.
 armadillo: CMakeFiles/armadillo.dir/rule
 .PHONY : armadillo
+
+# Pre-install relink rule for target.
+CMakeFiles/armadillo.dir/preinstall:
+	$(MAKE) -f CMakeFiles/armadillo.dir/build.make CMakeFiles/armadillo.dir/preinstall
+.PHONY : CMakeFiles/armadillo.dir/preinstall
+
+# Prepare target for install.
+preinstall: CMakeFiles/armadillo.dir/preinstall
+.PHONY : preinstall
 
 # clean rule for target.
 CMakeFiles/armadillo.dir/clean:

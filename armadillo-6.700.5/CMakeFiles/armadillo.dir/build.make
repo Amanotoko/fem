@@ -34,11 +34,14 @@ RM = /usr/bin/cmake -E remove -f
 # Escaping for special characters.
 EQUALS = =
 
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = /usr/bin/ccmake
+
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/khe/gitlab/fem/armadillo-6.700.5
+CMAKE_SOURCE_DIR = /home/eegrad/khe/locker/gitlab/FEM_current_density/armadillo-6.700.5
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/khe/gitlab/fem/armadillo-6.700.5
+CMAKE_BINARY_DIR = /home/eegrad/khe/locker/gitlab/FEM_current_density/armadillo-6.700.5
 
 # Include any dependencies generated for this target.
 include CMakeFiles/armadillo.dir/depend.make
@@ -51,17 +54,17 @@ include CMakeFiles/armadillo.dir/flags.make
 
 CMakeFiles/armadillo.dir/src/wrapper.cpp.o: CMakeFiles/armadillo.dir/flags.make
 CMakeFiles/armadillo.dir/src/wrapper.cpp.o: src/wrapper.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/khe/gitlab/fem/armadillo-6.700.5/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/eegrad/khe/locker/gitlab/FEM_current_density/armadillo-6.700.5/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/armadillo.dir/src/wrapper.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/armadillo.dir/src/wrapper.cpp.o -c /home/khe/gitlab/fem/armadillo-6.700.5/src/wrapper.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/armadillo.dir/src/wrapper.cpp.o -c /home/eegrad/khe/locker/gitlab/FEM_current_density/armadillo-6.700.5/src/wrapper.cpp
 
 CMakeFiles/armadillo.dir/src/wrapper.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/armadillo.dir/src/wrapper.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/khe/gitlab/fem/armadillo-6.700.5/src/wrapper.cpp > CMakeFiles/armadillo.dir/src/wrapper.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/eegrad/khe/locker/gitlab/FEM_current_density/armadillo-6.700.5/src/wrapper.cpp > CMakeFiles/armadillo.dir/src/wrapper.cpp.i
 
 CMakeFiles/armadillo.dir/src/wrapper.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/armadillo.dir/src/wrapper.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/khe/gitlab/fem/armadillo-6.700.5/src/wrapper.cpp -o CMakeFiles/armadillo.dir/src/wrapper.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/eegrad/khe/locker/gitlab/FEM_current_density/armadillo-6.700.5/src/wrapper.cpp -o CMakeFiles/armadillo.dir/src/wrapper.cpp.s
 
 CMakeFiles/armadillo.dir/src/wrapper.cpp.o.requires:
 .PHONY : CMakeFiles/armadillo.dir/src/wrapper.cpp.o.requires
@@ -81,10 +84,10 @@ armadillo_EXTERNAL_OBJECTS =
 
 libarmadillo.so.6.700.5: CMakeFiles/armadillo.dir/src/wrapper.cpp.o
 libarmadillo.so.6.700.5: CMakeFiles/armadillo.dir/build.make
-libarmadillo.so.6.700.5: /usr/lib/libblas.so
-libarmadillo.so.6.700.5: /usr/lib/liblapack.so
-libarmadillo.so.6.700.5: /usr/lib/libarpack.so
-libarmadillo.so.6.700.5: /home/khe/gitlab/fem/SuperLU_4.3/lib/libsuperlu_4.3.a
+libarmadillo.so.6.700.5: /usr/lib64/atlas/libatlas.so
+libarmadillo.so.6.700.5: /usr/lib64/libblas.so
+libarmadillo.so.6.700.5: /usr/lib64/liblapack.so
+libarmadillo.so.6.700.5: /home/eegrad/khe/locker/gitlab/FEM_current_density/SuperLU_4.3/lib/libsuperlu_4.3.a
 libarmadillo.so.6.700.5: CMakeFiles/armadillo.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX shared library libarmadillo.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/armadillo.dir/link.txt --verbose=$(VERBOSE)
@@ -98,6 +101,32 @@ libarmadillo.so: libarmadillo.so.6.700.5
 CMakeFiles/armadillo.dir/build: libarmadillo.so
 .PHONY : CMakeFiles/armadillo.dir/build
 
+# Object files for target armadillo
+armadillo_OBJECTS = \
+"CMakeFiles/armadillo.dir/src/wrapper.cpp.o"
+
+# External object files for target armadillo
+armadillo_EXTERNAL_OBJECTS =
+
+CMakeFiles/CMakeRelink.dir/libarmadillo.so.6.700.5: CMakeFiles/armadillo.dir/src/wrapper.cpp.o
+CMakeFiles/CMakeRelink.dir/libarmadillo.so.6.700.5: CMakeFiles/armadillo.dir/build.make
+CMakeFiles/CMakeRelink.dir/libarmadillo.so.6.700.5: /usr/lib64/atlas/libatlas.so
+CMakeFiles/CMakeRelink.dir/libarmadillo.so.6.700.5: /usr/lib64/libblas.so
+CMakeFiles/CMakeRelink.dir/libarmadillo.so.6.700.5: /usr/lib64/liblapack.so
+CMakeFiles/CMakeRelink.dir/libarmadillo.so.6.700.5: /home/eegrad/khe/locker/gitlab/FEM_current_density/SuperLU_4.3/lib/libsuperlu_4.3.a
+CMakeFiles/CMakeRelink.dir/libarmadillo.so.6.700.5: CMakeFiles/armadillo.dir/relink.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX shared library CMakeFiles/CMakeRelink.dir/libarmadillo.so"
+	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/armadillo.dir/relink.txt --verbose=$(VERBOSE)
+	$(CMAKE_COMMAND) -E cmake_symlink_library CMakeFiles/CMakeRelink.dir/libarmadillo.so.6.700.5 CMakeFiles/CMakeRelink.dir/libarmadillo.so.6 CMakeFiles/CMakeRelink.dir/libarmadillo.so
+
+CMakeFiles/CMakeRelink.dir/libarmadillo.so.6: CMakeFiles/CMakeRelink.dir/libarmadillo.so.6.700.5
+
+CMakeFiles/CMakeRelink.dir/libarmadillo.so: CMakeFiles/CMakeRelink.dir/libarmadillo.so.6.700.5
+
+# Rule to relink during preinstall.
+CMakeFiles/armadillo.dir/preinstall: CMakeFiles/CMakeRelink.dir/libarmadillo.so
+.PHONY : CMakeFiles/armadillo.dir/preinstall
+
 CMakeFiles/armadillo.dir/requires: CMakeFiles/armadillo.dir/src/wrapper.cpp.o.requires
 .PHONY : CMakeFiles/armadillo.dir/requires
 
@@ -106,6 +135,6 @@ CMakeFiles/armadillo.dir/clean:
 .PHONY : CMakeFiles/armadillo.dir/clean
 
 CMakeFiles/armadillo.dir/depend:
-	cd /home/khe/gitlab/fem/armadillo-6.700.5 && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/khe/gitlab/fem/armadillo-6.700.5 /home/khe/gitlab/fem/armadillo-6.700.5 /home/khe/gitlab/fem/armadillo-6.700.5 /home/khe/gitlab/fem/armadillo-6.700.5 /home/khe/gitlab/fem/armadillo-6.700.5/CMakeFiles/armadillo.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/eegrad/khe/locker/gitlab/FEM_current_density/armadillo-6.700.5 && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/eegrad/khe/locker/gitlab/FEM_current_density/armadillo-6.700.5 /home/eegrad/khe/locker/gitlab/FEM_current_density/armadillo-6.700.5 /home/eegrad/khe/locker/gitlab/FEM_current_density/armadillo-6.700.5 /home/eegrad/khe/locker/gitlab/FEM_current_density/armadillo-6.700.5 /home/eegrad/khe/locker/gitlab/FEM_current_density/armadillo-6.700.5/CMakeFiles/armadillo.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/armadillo.dir/depend
 
