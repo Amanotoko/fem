@@ -1,0 +1,14 @@
+{ "onelab":{
+  "creator":"",
+  "date":"Mon May 16 12:19:25 2016",
+  "parameters":[ 
+    { "type":"string", "version":"1.1", "name":"GetDP/Action", "label":"", "help":"", "neverChanged":true", "visible":false", "readOnly":false", "attributes":{  }, "clients":{  }, "value":"check", "kind":"generic", "choices":[  ] }
+    { "type":"string", "version":"1.1", "name":"Gmsh/Action", "label":"", "help":"", "neverChanged":true", "visible":false", "readOnly":false", "attributes":{  }, "clients":{ "Gmsh":false }, "value":"", "kind":"generic", "choices":[  ] }
+    { "type":"number", "version":"1.1", "name":"Gmsh/Model dimension", "label":"", "help":"", "neverChanged":false", "visible":false", "readOnly":true", "attributes":{ "Closed":"1" }, "clients":{ "Gmsh":false }, "value":3, "min":-1e+200, "max":1e+200, "step":0, "index":-1, "choices":[  ], "valueLabels":{  } }
+    { "type":"string", "version":"1.1", "name":"Gmsh/Model name", "label":"", "help":"", "neverChanged":true", "visible":false", "readOnly":true", "attributes":{ "Closed":"0" }, "clients":{ "Gmsh":false }, "value":"/Users/kaihe/gitlab/fem/example/V1P0_S0_FLT.geo", "kind":"generic", "choices":[  ] }
+    { "type":"string", "version":"1.1", "name":"Gmsh/MshFileName", "label":"Mesh name", "help":"", "neverChanged":false", "visible":true", "readOnly":false", "attributes":{ "Closed":"0" }, "clients":{ "Gmsh":false }, "value":"untitled.msh", "kind":"file", "choices":[  ] }
+    { "type":"number", "version":"1.1", "name":"Gmsh/Number of physical groups", "label":"", "help":"", "neverChanged":false", "visible":false", "readOnly":true", "attributes":{ "Closed":"1" }, "clients":{ "Gmsh":false }, "value":1, "min":-1e+200, "max":1e+200, "step":0, "index":-1, "choices":[  ], "valueLabels":{  } }
+    { "type":"number", "version":"1.1", "name":"Gmsh/Physical group 1/Dimension", "label":"", "help":"", "neverChanged":false", "visible":false", "readOnly":true", "attributes":{  }, "clients":{ "Gmsh":false }, "value":3, "min":-1e+200, "max":1e+200, "step":0, "index":-1, "choices":[  ], "valueLabels":{  } }
+    { "type":"string", "version":"1.1", "name":"Gmsh/Physical group 1/Name", "label":"", "help":"", "neverChanged":false", "visible":false", "readOnly":true", "attributes":{  }, "clients":{ "Gmsh":false }, "value":"plane", "kind":"generic", "choices":[  ] }
+    { "type":"number", "version":"1.1", "name":"Gmsh/Physical group 1/Number", "label":"", "help":"", "neverChanged":false", "visible":false", "readOnly":true", "attributes":{  }, "clients":{ "Gmsh":false }, "value":1, "min":-1e+200, "max":1e+200, "step":0, "index":-1, "choices":[  ], "valueLabels":{  } }
+] }

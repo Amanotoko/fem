@@ -70,7 +70,7 @@ EleList.TriEle = TempEleList(TriPos,:);
 EleList.TriEle(:,EleList.TriEle(1,:)==-1) = [];
 end;
 if isempty(TetraPos),
-    disp('Attention: File does not have Triangular elements!');
+    disp('Attention: File does not have Tetrahedron elements!');
 else
 EleList.TetraEle = TempEleList(TetraPos,:);
 end

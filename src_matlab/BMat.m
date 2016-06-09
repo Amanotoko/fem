@@ -1,4 +1,4 @@
-function [V Y] = BMat(nodecor)
+function [V B] = BMat(nodecor)
 
 % Calculate the shape function gradient of the Tetrahedral
 
@@ -15,4 +15,4 @@ for k = 1:4
     d(k) = cofactor(k,4,Vmat);
 end;
 
-Y = [b; c; d]/V/6;
+B = [b; c; d]/V/6;

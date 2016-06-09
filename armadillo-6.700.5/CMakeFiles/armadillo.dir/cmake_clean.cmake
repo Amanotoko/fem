@@ -1,12 +1,12 @@
-FILE(REMOVE_RECURSE
+file(REMOVE_RECURSE
   "CMakeFiles/armadillo.dir/src/wrapper.cpp.o"
   "libarmadillo.pdb"
-  "libarmadillo.so"
-  "libarmadillo.so.6.700.5"
-  "libarmadillo.so.6"
+  "libarmadillo.dylib"
+  "libarmadillo.6.70.5.dylib"
+  "libarmadillo.6.dylib"
 )
 
 # Per-language clean rules from dependency scanning.
-FOREACH(lang CXX)
-  INCLUDE(CMakeFiles/armadillo.dir/cmake_clean_${lang}.cmake OPTIONAL)
-ENDFOREACH(lang)
+foreach(lang CXX)
+  include(CMakeFiles/armadillo.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

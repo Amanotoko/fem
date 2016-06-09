@@ -5,7 +5,7 @@ function FEM_current_density(mshfile, boundaryfile, ppmshfile)
 [Volume Surf] = LoadBoundaryFile(boundaryfile);
 % volume is the volume using one material. In this code, we assume only one volume (homegeneous material)
 Material = Volume';
-h = 0;  % convection coefficient
+h = 1;  % convection coefficient
 Ta = 1;   % Amostphere temperture
 % Surf is the boundary conditons read from the boundary conditon file
 
@@ -40,7 +40,7 @@ tSF = toc;
 fprintf('Time for building finite element matrix K: %.2f s!\n',tSF);
 
 %tic;
-%[KhNN fhTN] = hN(Node_Num,TriEleNode,TetraEleNode,NodeCor,surf1,h,Ta);
+%[KhNN fhTN] = hN(Node_Num,TriEleNode,TetraEleNode,NodeCor,[7007],h,Ta);
 %tSM = toc;
 %fprintf('Time for Calculating KhNN and fhTN: %.2f s!\n',tSM);
 
@@ -55,6 +55,9 @@ tic;
 % f is the right hand side input vector
 K = KBDB;
 f = sparse(Node_Num,1);
+
+%K = K + KhNN;
+%f = f+fhTN;
 
 [a, Surf_Num] = size(Surf);
 
@@ -86,5 +89,5 @@ EList = EList / ro_Cu;
 % dump the results. Each node will have a color to indicate its current
 % around node.
 TimeStep = 0;
-%PostFileO(Node_Num,mshfile,TimeStep,T,OFilename);
-PostFileO(Node_Num,mshfile,TimeStep,EList(:,4), ppmshfile);
+PostFileO(Node_Num,mshfile,TimeStep,Volt,ppmshfile);
+%PostFileO(Node_Num,mshfile,TimeStep,EList(:,4), ppmshfile);

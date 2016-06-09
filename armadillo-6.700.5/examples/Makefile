@@ -9,7 +9,7 @@ CXX=g++
 
 
 # flags configured by CMake
-ifeq (unix,macos)
+ifeq (macos,macos)
   LIB_FLAGS = -larmadillo -framework Accelerate
 else
   LIB_FLAGS = -larmadillo
