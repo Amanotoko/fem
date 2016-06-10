@@ -8,7 +8,7 @@ LhN = length(Lines);
 
 ll = [];
 for n = 1:LhN
-    ll = [ll LineEle(n, 6:7)];
+    ll = [ll LineEle(Lines(n), 6:7)];
 end
 
 ll = unique(ll);

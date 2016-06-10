@@ -1,6 +1,6 @@
 function FEM_2d(mshfile, boundaryfile, ppmshfile)
 
-[Surf Line] = LoadBoundaryFile(boundaryfile);
+[Surf Line Via] = LoadB_2d(boundaryfile);
 
 Material = Surf';
 
@@ -13,7 +13,7 @@ tic;
 
 tRF = toc;
 fprintf('Time for reading the File: %.2f s!\n',tRF);
-
+:
 
 
 %Triangular list
@@ -31,7 +31,12 @@ Node_Num = size(NodeCor,1);
 NodeCor = NodeCor*10^-6;
 
 tic;
+% generate matrix for surface mesh
 KBDB_2d = BDB_2d(Node_Num, TriEle, NodeCor, Material);
+
+% connect surfaces with vias
+KBDB_2d = via_1d(Via, KBDB_2d, NodeCor, LineEle);
+
 tSF = toc;
 fprintf('Time for building finite element matrix K: %.2f s!\n',tSF);
 
@@ -47,5 +52,21 @@ end
 
 Volt = K\f;
 
+NodeCor(:,5) = Volt;
+
+% find the neighbor nodes for each node in the FEM so that we can compute
+% the dV/dr, 
+NodeSet = GroupNodes_2d(TriEleNode, LineNode, Node_Num);
+
+% Then compute the dV/dr 
+EList = GetEList(NodeSet, NodeCor, Node_Num); 
+
+% compute the current density = E/rho, rho is copper resistivity.
+EList = EList / ro_Cu;  
+
 TimeStep = 0;
-PostFileO(Node_Num,mshfile,TimeStep,Volt,ppmshfile);
+
+vfile = strcat(ppmshfile, 'v');
+PostFile1(Node_Num,mshfile,TimeStep,Volt,vfile);
+PostFileO(Node_Num,mshfile,TimeStep,EList(:,4), ppmshfile);
+
