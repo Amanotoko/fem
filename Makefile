@@ -10,9 +10,11 @@ SRC_DIR:= src
 INC_DIR:= include
 EXP_DIR:= example
 BUILD_DIR:= build
-ARMA_DIR:= armadillo-6.700.5/include
+ARMA_DIR:=  armadillo-4.320.0/include
+ARMA_LIB:= ./arma_lib/usr/local/lib64
 TEST_SRC_DIR:= $(SRC_DIR)/test
 TEST_EXEC_DIR:= $(BUILD_DIR)/bin
+ATLAS:= /usr/lib64/atlas
 
 MAIN:= fem_cmd
 TEST_FILES:= $(wildcard $(TEST_SRC_DIR)/*.cc)
@@ -22,8 +24,9 @@ INC_FILES:= $(wildcard $(INC_DIR)/*.h)
 
 TEST_EXEC:= $(patsubst $(TEST_SRC_DIR)/%.cc, $(TEST_EXEC_DIR)/%, $(TEST_FILES))
 
-INC:= -I$(INC_DIR) 
-LDFLAGS:= -larmadillo
+INC:= -I$(INC_DIR) -I$(ARMA_DIR)  
+LDFLAGS:= -llapack -lblas 
+
 
 default: binary main 
 
