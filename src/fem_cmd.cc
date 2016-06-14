@@ -31,7 +31,7 @@ using namespace arma;
 void help_message() {
 	cout << endl;
 	cout << "FEM current density analysis program V0.1" << endl;
-	cout << "Usage: fem_cmd -i inputfile -b boundaryfile [-o output_file] " << endl;
+	cout << "Usage: fem_cmd -i inputfile -b boundaryfile [-o output_file] [-2d]" << endl;
 }
 
 
@@ -43,6 +43,7 @@ int main(int argc, char** argv) {
 	string bFileName = "";
 	string oFileName = "";
 
+	bool Enable2D = false;
 	if (argc < 5) {
 		help_message();
 		return -1;
@@ -72,6 +73,14 @@ int main(int argc, char** argv) {
 			}
 			oFileName = argv[i + 1];
 			i += 2;
+		}
+		else if (strcmp(argv[i] , "-2d") == 0) {
+			if (i + 1 >= argc) {
+				help_message();
+				return -1;
+			}
+			Enable2D = true;
+			i += 1;
 		}
 	}
 	
