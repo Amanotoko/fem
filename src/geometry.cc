@@ -47,7 +47,9 @@ void Element :: setEle(istream &in)
 		tag_.push_back(tag);
 	}
 
-	if (type_ == 2)
+	if (type_ == 1)
+		nodeNum_ = 2;
+	else if (type_ == 2)
 		nodeNum_ = 3;
 	else if (type_ == 4)
 		nodeNum_ = 4;
@@ -117,6 +119,17 @@ void Mesh :: setMesh(istream &in)
 		Element e;
 		e.setEle(in);
 		element_.push_back(e);
+	}
+
+	for (int i = 0; i < eleNum_; ++i) {
+		Element e = element_[i];
+		int type = e.getType();
+		if (type == 1)
+			LineEle_.push_back(e);
+		else if (type == 2)
+			TriEle_.push_back(e);
+		else if (type == 4)
+			TetraEle_.push_back(e);
 	}
 }
 

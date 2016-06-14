@@ -63,7 +63,8 @@ f = sparse(Node_Num,1);
 
 % Adjust the K and right-hand side vector f based on boundary conditions.
 for i = 1:Surf_Num
-    [K f] = boundary(Node_Num, TriEleNode, TetraEleNode, NodeCor, K, f, Surf(1, i), Surf(2, i));
+    [K f] = boundary_s(TriEle, K, f, Surf(1,i), Surf(2,i));
+    %[K f] = boundary(Node_Num, TriEleNode, TetraEleNode, NodeCor, K, f, Surf(1, i), Surf(2, i));
 end
 
 % solve for unknown Volt, which is the potential.
@@ -89,5 +90,8 @@ EList = EList / ro_Cu;
 % dump the results. Each node will have a color to indicate its current
 % around node.
 TimeStep = 0;
-PostFileO(Node_Num,mshfile,TimeStep,Volt,ppmshfile);
-%PostFileO(Node_Num,mshfile,TimeStep,EList(:,4), ppmshfile);
+
+vfile = strcat(ppmshfile, 'v');
+
+PostFile1(Node_Num,mshfile,TimeStep,Volt,vfile);
+PostFileO(Node_Num,mshfile,TimeStep,EList(:,4), ppmshfile);

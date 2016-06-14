@@ -195,8 +195,6 @@ sp_mat BDB(Mesh &myMesh, Boundary &myBoundary) {
 	return KBDB;
 }
 
-
-
 sp_mat BDB_2d(Mesh &myMesh, Boundary &myBoundary) {
 	int NodeNum = myMesh.getNodeNum();
 	sp_mat KBDB(NodeNum, NodeNum);

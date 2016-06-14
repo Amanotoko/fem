@@ -13,8 +13,6 @@
 #ifndef __geometry_h__
 #define __geometry_h__
 
-#include<cblas.h>
-
 #include<string>
 #include<iostream>
 #include<vector>
@@ -40,7 +38,6 @@ class Element{
 	private:
 		int id_;		// element id
 		int type_;		// 0: null; 1: 2-node line; 2: 3 node-triangle; 4: tetrahedron
-			
 		int tagNum_;	// number of tags
 		int nodeNum_;	// number of nodes
 		std::vector<int> tag_;	// tags
@@ -72,6 +69,13 @@ class Mesh{
 		int eleNum_;
 		std::vector<Node> node_;
 		std::vector<Element> element_;
+
+// to make it consistent with matlab
+		std::vector<Element> PtEle_;
+		std::vector<Element> LineEle_;
+		std::vector<Element> TriEle_;
+		std::vector<Element> TetraEle_;
+		
 	public:
 		Mesh(void) : version_(""), file_type_(""), data_size_("") {}
 		
@@ -83,6 +87,11 @@ class Mesh{
 		
 		std::vector<Node> getNodeList() const { return node_; }
 		std::vector<Element> getEleList() const {return element_; }
+
+		std::vector<Element> getPtEle() const { return PtEle_; }
+		std::vector<Element> getLineEle() const { return LineEle_; }
+		std::vector<Element> getTriEle() const { return TriEle_; }
+		std::vector<Element> getTetraEle() const { return TetraEle_; }
 
 		void setMesh(std::istream &in);
 		void printMesh(std::ostream &out) const;
