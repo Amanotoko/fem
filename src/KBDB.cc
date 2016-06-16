@@ -244,6 +244,15 @@ sp_mat BDB_2d(Mesh &myMesh, Boundary &myBoundary) {
 }
 
 void via_1d(sp_mat& KBDB, Mesh &myMesh, Boundary &myBoundary) {
-	
+	int NodeNum = myMesh.getNodeNum();	
 
+	vector<int> via = myBoundary.getVia();
+	vector<double> viaVal = myBoundary.getViaVal();
+
+	vector<Element> lines = myMesh.getLineEle(); 
+	int LVias = via.size();
+	
+	for (int n = 0; n < LVias; ++n) {
+			
+	}
 }

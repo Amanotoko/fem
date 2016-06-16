@@ -13,7 +13,7 @@ if fsize >0
     
     Vol_Num = fscanf(fid, '%d', 1);
     %read volumne id
-    Vol = fscanf(fid, '%d', [2 Vol_Num]);
+    Vol = fscanf(fid, '%f', [2 Vol_Num]);
     
     fscanf(fid, '%s/n');
     %read surface id

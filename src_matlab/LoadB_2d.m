@@ -13,7 +13,7 @@ if fsize >0
     
     Surf_Num = fscanf(fid, '%d', 1);
     %read surf id
-    Surf = fscanf(fid, '%d', [2 Surf_Num]);
+    Surf = fscanf(fid, '%f', [2 Surf_Num]);
     
     fscanf(fid, '%s/n');
     %read boundary line id
