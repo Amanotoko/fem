@@ -69,6 +69,19 @@ mat EleParser_2d(Element &e, vector<Node> &nodes) {
 	return NodeCor; 
 }
 
+vec EleParser_1d(Element &e, vector<Node> &nodes) {
+
+	vector<int> nodesInEle = e.getNodeList();
+	vec NodeCor(2);
+
+	for (int i = 0; i < 2; ++i) {
+		NodeCor(0) = nodes[nodesInEle[i]-1].getz()*UNIT;
+		NodeCor(1) = nodes[nodesInEle[i]-1].getz()*UNIT;	
+	}
+	
+	return NodeCor;
+}
+
 //Calculate the shape function gradient of the tetrahedral
 void BMat(mat &nodecor, mat &Y, double &V) {
 	mat b = zeros<mat>(1,4);	
@@ -250,9 +263,32 @@ void via_1d(sp_mat& KBDB, Mesh &myMesh, Boundary &myBoundary) {
 	vector<double> viaVal = myBoundary.getViaVal();
 
 	vector<Element> lines = myMesh.getLineEle(); 
+	vector<Node> nodes = myMesh.getNodeList();
+
 	int LVias = via.size();
 	
 	for (int n = 0; n < LVias; ++n) {
-			
+		double D = viaVal[n];		
+
+		int viaID = via[n];
+		for (int j = 0; j < lines.size(); ++j) {
+			int mtag = lines[j].getMaterial();
+			vec nodecor; // only keep z direction
+	
+			if (mtag == vid) {
+				nodecor = EleParser_1d(lines[j], nodes);
+				
+				double l = nodecor(0) - nodecor(1);
+				l = l < 0 ? -l : l;
+				mat B(1,2);
+				B(0,0) = -1/l;
+				B(0,1) = 1/l;
+
+				mat BDBm = B.t()*D*B;
+
+				vector<int> nodesInEle = lines[j].getNodeList();
+				fillSpMat(nodesInEle, nodesInEle, KBDB, BDBm);
+			}
+		}
 	}
 }
