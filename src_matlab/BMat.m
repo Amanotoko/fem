@@ -1,6 +1,6 @@
 function [V B] = BMat(nodecor)
 
-% Calculate the shape function gradient of the Tetrahedral
+% Calculate the shape function gradient of the Tetrahedral. See page 71.
 
 b = zeros(1,4);
 c = zeros(1,4);

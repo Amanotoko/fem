@@ -1,6 +1,7 @@
-dir = '../../Galileo_cases/';
-%dir = '../'
-name = 't1_no';
+%dir = '../../Galileo_cases/';
+%dir = './'
+dir = '../'
+name = 't_thin';
 
 m = '.msh';
 b = '.cond';

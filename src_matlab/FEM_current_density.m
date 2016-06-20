@@ -35,6 +35,7 @@ NodeCor = NodeCor*10^-6;
 
 tic;
 %  Build the matrix K for all the finite elements. It is called KBDB here.
+%  We use the variational approach (see pp. 88).
 KBDB = BDB(Node_Num,TetraEle,NodeCor,Material);
 tSF = toc;
 fprintf('Time for building finite element matrix K: %.2f s!\n',tSF);
