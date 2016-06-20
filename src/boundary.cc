@@ -140,3 +140,14 @@ void EleWithSurf(vector<Element> &Eles, int surfID, vector<int> &ElesOnBoundary)
 	
 } 
 
+void BoundaryUpdate2D(Mesh &myMesh, Boundary &myBoundary, sp_mat &K, vec &f) {
+	vector<int> lines = myBoundary.getLine();
+	vector<double> LineVal = myBoundary.getLVal();
+
+	vector<Node> Nodes = myMesh.getNodeList(); 
+	vector<Element> Eles = myMesh.getLineEle();
+	
+	for (int i = 0; i < lines.size(); ++i) {
+			
+	}
+}
