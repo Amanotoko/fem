@@ -8,7 +8,7 @@ fqN = sparse(Node_Num,1);
 LqN = length(flag);
 
 for n = 1:LqN,
-    Node = TetraEleNode(flag(n),:);
+    Node = TetraEleNode(flag(n),:)
     A = SurfArea(Node,NodeCor,NodeInfo(n,:));
     fqN(Node) = fqN(Node) +q*tetra_intN('A',A,NodeInfo(n,:));
 end

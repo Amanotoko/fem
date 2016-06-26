@@ -1,6 +1,6 @@
 function FEM_2d(mshfile, boundaryfile, ppmshfile)
 
-[Surf Line Via] = LoadB_2d(boundaryfile);
+[Surf Line Via Flux] = LoadB_2d(boundaryfile);
 
 Material = Surf';
 
@@ -43,8 +43,19 @@ tic;
 K = KBDB_2d;
 f = sparse(Node_Num,1);
 
+%current boundary
+[a, Flux_Num] = size(Flux);
+fqN = sparse(Node_Num,1);
+for i = 1:Flux_Num
+    fqN = fqN + qN_2d(Node_Num, LineEle, NodeCor, Flux(1,i), Flux(2,i), 1);
+    %fqN = fqN + qN(Node_Num, TetraEleNode,TriEleNode,NodeCor,Flux(1,i),Flux(2,i));
+end
+
+f = f + fqN;
+
 [a, b_num] = size(Line);
 
+%voltage boundary
 for i = 1:b_num
     [K f] = boundary_2d(LineEle, K, f, Line(1,i), Line(2,i));
 end

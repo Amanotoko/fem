@@ -1,7 +1,7 @@
 function A = SurfArea(TetraEle_Node, NodeCor, NodeInfo)
 
 ENode = TetraEle_Node;
-ENode(NodeInfo == 0) = [];
+ENode(NodeInfo == 0) = []
 
 Amat = NodeCor(ENode,2:4);
 

@@ -2,7 +2,7 @@ function FEM_current_density(mshfile, boundaryfile, ppmshfile)
 
 
 
-[Volume Surf] = LoadBoundaryFile(boundaryfile);
+[Volume Surf Flux] = LoadBoundaryFile(boundaryfile);
 % volume is the volume using one material. In this code, we assume only one volume (homegeneous material)
 Material = Volume';
 h = 1;  % convection coefficient
@@ -46,7 +46,12 @@ fprintf('Time for building finite element matrix K: %.2f s!\n',tSF);
 %fprintf('Time for Calculating KhNN and fhTN: %.2f s!\n',tSM);
 
 %tic;
-%fqN = qN(Node_Num, TetraEleNode,TriEleNode,NodeCor,flux_surf,q);
+[a, Flux_Num] = size(Flux);
+fqN = sparse(Node_Num,1);
+for i = 1:Flux_Num
+    fqN = fqN + qN_3d(Node_Num, TriEle, NodeCor, Flux(1,i), Flux(2,i));
+    %fqN = fqN + qN(Node_Num, TetraEleNode,TriEleNode,NodeCor,Flux(1,i),Flux(2,i));
+end
 %fGN = GN(Node_Num, TetraEle, NodeCor,heat_ele,G);
 %tAS = toc;
 %fprintf('Time for Calculating fqN and fGN: %.2f s!\n',tAS);
@@ -56,7 +61,7 @@ tic;
 % f is the right hand side input vector
 K = KBDB;
 f = sparse(Node_Num,1);
-
+f = f + fqN;
 %K = K + KhNN;
 %f = f+fhTN;
 

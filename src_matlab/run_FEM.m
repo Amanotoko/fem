@@ -1,6 +1,6 @@
 %dir = '../../Galileo_cases/';
 %dir = './'
-dir = '../'
+dir = '../fem_case/'
 name = 't_thin';
 
 m = '.msh';
@@ -13,7 +13,7 @@ pf = strcat(dir, p, name, m);
 
 
 % 2D FEM
-%FEM_2d(mf,bf,pf);
+FEM_2d(mf,bf,pf);
 
 % 3D FEM
-FEM_current_density(mf,bf,pf);
+%FEM_current_density(mf,bf,pf);
