@@ -65,10 +65,11 @@ void BoundaryUpdateN(Mesh &myMesh, Boundary &myBoundary, sp_mat &K, vec &f) {
 
 	vector<Node> Nodes = myMesh.getNodeList(); 
 	vector<Element> Eles = myMesh.getEleList();
+	vector<Element> Tris = myMesh.getTriEle();
 
 	for (int s = 0; s < surf.size(); ++s) {
 		vector<int> NodesOnBoundary;
-		NodeWithSurf(Eles, surf[s], NodesOnBoundary);		
+		NodeWithEle(Tris, surf[s], NodesOnBoundary);		
 		
 #ifdef DEBUG_RHS
 		cout << s << " " << surfVal[s] << endl;
@@ -91,11 +92,9 @@ void BoundaryUpdateN(Mesh &myMesh, Boundary &myBoundary, sp_mat &K, vec &f) {
 #endif
 }
 
-void NodeWithSurf(vector<Element> &Eles, int surfID, vector<int> &NOB) {
+void NodeWithEle(vector<Element> &Eles, int surfID, vector<int> &NOB) {
 	set<int> NodesOnBoundary;
 	for (int i = 0; i < Eles.size(); ++i) {
-		int type = Eles[i].getType();
-		if (type != 2) break; // only search triangular
 		int sID = Eles[i].getMaterial();
 		if (sID == surfID) {
 			vector<int> nodes = Eles[i].getNodeList();
@@ -147,7 +146,16 @@ void BoundaryUpdate2D(Mesh &myMesh, Boundary &myBoundary, sp_mat &K, vec &f) {
 	vector<Node> Nodes = myMesh.getNodeList(); 
 	vector<Element> Eles = myMesh.getLineEle();
 	
-	for (int i = 0; i < lines.size(); ++i) {
-			
+	for (int s = 0; s < lines.size(); ++s) {
+		vector<int> NodesOnBoundary;
+		NodeWithEle(Eles, lines[s], NodesOnBoundary);		
+		
+		for (int i = 0; i < NodesOnBoundary.size(); ++i){
+			int NodeID = NodesOnBoundary[i]-1; 
+			K.row(NodeID).zeros();
+			K(NodeID, NodeID) = 1;
+			f(NodeID) = LineVal[s];
+		}
 	}
+			
 }

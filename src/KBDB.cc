@@ -212,9 +212,9 @@ sp_mat BDB_2d(Mesh &myMesh, Boundary &myBoundary) {
 	int NodeNum = myMesh.getNodeNum();
 	sp_mat KBDB(NodeNum, NodeNum);
 
-	int LMtl = myBoundary.getVol().size(); // volume numbers with different material
-	vector<double> Material = myBoundary.getVVal(); // material data
-	vector<int> vol = myBoundary.getVol(); // volume id
+	int LMtl = myBoundary.getSurf().size(); // volume numbers with different material
+	vector<double> Material = myBoundary.getSVal(); // material data
+	vector<int> surf = myBoundary.getSurf(); // volume id
 	vector<Element> elems = myMesh.getEleList(); // all elements in FEM
 	vector<Node> nodes = myMesh.getNodeList(); // all nodes in FEM
 
@@ -230,19 +230,19 @@ sp_mat BDB_2d(Mesh &myMesh, Boundary &myBoundary) {
 		// idx all -1
 		D(0, 0) = Material[i];
 		D(1, 1) = Material[i];
-		int vid = vol[i];
+		int sid = surf[i];
 		
 		for (int j = 0; j < elems.size(); ++j) {
 			int mtag = elems[j].getMaterial();
 			mat nodecor;
-			if (mtag == vid) {
+			if (mtag == sid) {
 				nodecor = EleParser_2d(elems[j], nodes);
 #ifdef DEBUG_node
 				cout << nodecor << endl;
 #endif
 				double V;
 				mat B;
-				BMat(nodecor, B, V);
+				BMat_2d(nodecor, B, V);
 				mat BDBm = B.t()*D*B*V;
 
 				vector<int> nodesInEle = elems[j].getNodeList();
@@ -275,7 +275,7 @@ void via_1d(sp_mat& KBDB, Mesh &myMesh, Boundary &myBoundary) {
 			int mtag = lines[j].getMaterial();
 			vec nodecor; // only keep z direction
 	
-			if (mtag == vid) {
+			if (mtag == viaID) {
 				nodecor = EleParser_1d(lines[j], nodes);
 				
 				double l = nodecor(0) - nodecor(1);

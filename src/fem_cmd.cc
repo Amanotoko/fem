@@ -9,11 +9,12 @@
 # Description: 
 #
 =============================================================================*/
-//#define DEUBG
+//#define DEBUG
 //#define DEBUG_A_SP
 //#define DEBUG_IO
 
 const double ro_Cu = 1.7e-8;
+const double height = 1; // for 2d surface current boundary
 
 #include "geometry.h"
 #include "loadB.h"
@@ -21,6 +22,7 @@ const double ro_Cu = 1.7e-8;
 #include "KBDB.h"
 #include "dump.h"
 #include "groupNodes.h"
+#include "qN.h"
 #include "armadillo"
 #include <fstream>
 #include <string>
@@ -42,6 +44,7 @@ int main(int argc, char** argv) {
 	string iFileName = "";
 	string bFileName = "";
 	string oFileName = "";
+	string coFileName = "";
 
 	bool Enable2D = false;
 	if (argc < 5) {
@@ -75,10 +78,6 @@ int main(int argc, char** argv) {
 			i += 2;
 		}
 		else if (strcmp(argv[i] , "-2d") == 0) {
-			if (i + 1 >= argc) {
-				help_message();
-				return -1;
-			}
 			Enable2D = true;
 			i += 1;
 		}
@@ -88,12 +87,17 @@ int main(int argc, char** argv) {
 		help_message();
 		return -1;
 	}
-	if (oFileName == "")
-		oFileName = iFileName + ".out";
-
+	if (oFileName == "") {
+		oFileName = iFileName + "v.out";
+		coFileName = iFileName + ".out";
+	}
+	else {
+		coFileName = oFileName + "cd";
+	}
 	cout << "Input File: " << iFileName << endl;
 	cout << "Boundary File: " << bFileName << endl;
-	cout << "Output File: " << oFileName << endl;
+	cout << "Voltage Output File: " << oFileName << endl;
+	cout << "Current Density Output File: " << coFileName << endl;
 
 	ifstream fin;
 	// read inputfile
@@ -145,19 +149,35 @@ int main(int argc, char** argv) {
 
 	//FEM Matrix
 	sp_mat K;
-	K = BDB(myMesh, myBoundary);
-//	cout << nonzeros(K).n_elem << endl;
-	
 	//FEM right-hand side
 	int NodeNum = myMesh.getNodeNum();
 	vec f = zeros(NodeNum);
+	
+	if (Enable2D) {
+		// surface fem to generate matrix
+		K = BDB_2d(myMesh, myBoundary);
+		// via connection
+		via_1d(K, myMesh, myBoundary);
+		// voltage boundary
+		BoundaryUpdate2D(myMesh, myBoundary, K, f);
+		// current boundary
+		vec fqN = qN_2d(NodeNum, myMesh, myBoundary, height);
+		f = f + fqN;
+	}
+	else {
+		K = BDB(myMesh, myBoundary);
+		// voltage boundary	
+		BoundaryUpdateN(myMesh, myBoundary, K, f);
+		// current boundary
+		vec fqN = qN_3d(NodeNum, myMesh, myBoundary);
+		f = f + fqN;
+	}
 
-	BoundaryUpdateE(myMesh, myBoundary, K, f);
-//	BoundaryUpdateN(myMesh, myBoundary, K, f);
+
 #ifdef DEBUG
 	sp_vec ff(f);
 	cout << ff << endl;
-//	cout << nonzeros(K).n_elem << endl;
+//	cout << K << endl;
 #endif
 	mat KK(K);
 	//vec x = spsolve(K, f);
@@ -169,6 +189,6 @@ int main(int argc, char** argv) {
 	groupNodes(NodeSet, myMesh, x, E);
 	
 	E /= ro_Cu;
-//	dump(oFileName, iFileName, x);	
-	dump(oFileName, iFileName, E);	
+	dump(oFileName, iFileName, x);	
+	dump(coFileName, iFileName, E);	
 }

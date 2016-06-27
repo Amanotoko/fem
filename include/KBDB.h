@@ -22,6 +22,6 @@ arma::mat EleParser_2d(Element &e, std::vector<Node> &nodes);
 
 void BMat(arma::mat &nodecor, arma::mat &Y, double &V);
 void BMat_2d(arma::mat &nodecor, arma::mat &Y, double &V);
-void via_1d(arma::mat &KBDB, Mesh &myMesh, Boundary &myBoundary);
+void via_1d(arma::sp_mat &KBDB, Mesh &myMesh, Boundary &myBoundary);
 
 double cofactor(int i, int j, arma::mat A);

@@ -22,18 +22,22 @@ class Boundary{
 		int surfNum_;
 		int lineNum_;
 		int viaNum_;
+		int fluxNum_;
+
 		std::vector<int> vol_;
 		std::vector<int> surf_;
 		std::vector<int> line_;
 		std::vector<int> via_;
+		std::vector<int> flux_;
 
 		std::vector<double> sVal_;
 		std::vector<double> vVal_;
 		std::vector<double> lVal_;
 		std::vector<double> viaVal_;
+		std::vector<double> fluxVal_;
 
 	public:
-		Boundary(void): volNum_(0), surfNum_(0), lineNum_(0), viaNum_(0), vol_(0, 0), surf_(0, 0),line_(0,0), via_(0,0), sVal_(0, 0), vVal_(0,0), lVal_(0), viaVal_(0) {}
+		Boundary(void): volNum_(0), surfNum_(0), lineNum_(0), viaNum_(0), fluxNum_(0), vol_(0, 0), surf_(0, 0),line_(0,0), via_(0,0), flux_(0,0), sVal_(0, 0), vVal_(0,0), lVal_(0), viaVal_(0), fluxVal_(0) {}
 
 		void setBoundary(std::istream &in);
 		void printBoundary(std::ostream &out) const;
@@ -50,6 +54,10 @@ class Boundary{
 		std::vector<int> getVia(void) {
 			return via_;
 		}
+		std::vector<int> getFlux(void) {
+			return flux_;
+		}
+		
 
 		std::vector<double> getSVal(void) {
 			return sVal_;
@@ -62,6 +70,9 @@ class Boundary{
 		}
 		std::vector<double> getViaVal(void) {
 			return viaVal_;
+		}
+		std::vector<double> getFluxVal(void) {
+			return fluxVal_;
 		}
 };
 
