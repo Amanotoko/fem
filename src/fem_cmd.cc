@@ -9,9 +9,9 @@
 # Description: 
 #
 =============================================================================*/
-//#define DEBUG
-//#define DEBUG_A_SP
-//#define DEBUG_IO
+#define DEBUG 1
+//#define DEBUG_A_SP 1
+#define DEBUG_IO 1
 
 const double ro_Cu = 1.7e-8;
 const double height = 1; // for 2d surface current boundary
@@ -177,7 +177,7 @@ int main(int argc, char** argv) {
 #ifdef DEBUG
 	sp_vec ff(f);
 	cout << ff << endl;
-//	cout << K << endl;
+	cout << K << endl;
 #endif
 	mat KK(K);
 	//vec x = spsolve(K, f);

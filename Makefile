@@ -26,7 +26,7 @@ TEST_EXEC:= $(patsubst $(TEST_SRC_DIR)/%.cc, $(TEST_EXEC_DIR)/%, $(TEST_FILES))
 
 INC:= -I$(INC_DIR) -I$(ARMA_DIR)  
 LDFLAGS:= -llapack -lblas 
-
+CFLAGS := -g
 
 default: binary main 
 
