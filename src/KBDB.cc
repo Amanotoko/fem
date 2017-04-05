@@ -10,9 +10,9 @@
 #
 =============================================================================*/
 
-//#define DEBUG
-//#define DEBUG_node
-//#define DEBUG_fill
+//#define DEBUG 1
+//#define DEBUG_node 1
+//#define DEBUG_fill 1
 
 //Nodecor is the node coornidates, we adjust the node coordinate to micro unit 10^-6
 const double UNIT = 1e-6;
@@ -56,6 +56,7 @@ mat EleParser_2d(Element &e, vector<Node> &nodes) {
 	for (int i = 0; i < 3; ++i) {
 		NodeCor(i, 0) = 1; // first column: all 1s.
 #ifdef DEBUG_node
+        cout << "EleParser_2d" << endl;
 		cout << nodesInEle[i] << " ";
 #endif
 		//Nodecor is the node coornidates, we adjust the node coordinate to micro unit 10^-6
@@ -75,8 +76,7 @@ vec EleParser_1d(Element &e, vector<Node> &nodes) {
 	vec NodeCor(2);
 
 	for (int i = 0; i < 2; ++i) {
-		NodeCor(0) = nodes[nodesInEle[i]-1].getz()*UNIT;
-		NodeCor(1) = nodes[nodesInEle[i]-1].getz()*UNIT;	
+		NodeCor(i) = nodes[nodesInEle[i]-1].getz()*UNIT;
 	}
 	
 	return NodeCor;
@@ -196,6 +196,9 @@ sp_mat BDB(Mesh &myMesh, Boundary &myBoundary) {
 				mat B;
 				BMat(nodecor, B, V);
 				mat BDBm = B.t()*D*B*V;
+#ifdef DEBUG_node
+				cout << BDBm << endl;
+#endif
 
 				vector<int> nodesInEle = elems[j].getNodeList();
 				fillSpMat(nodesInEle, nodesInEle, KBDB, BDBm);
@@ -244,6 +247,9 @@ sp_mat BDB_2d(Mesh &myMesh, Boundary &myBoundary) {
 				mat B;
 				BMat_2d(nodecor, B, V);
 				mat BDBm = B.t()*D*B*V;
+#ifdef DEBUG_node
+				cout << BDBm << endl;
+#endif
 
 				vector<int> nodesInEle = elems[j].getNodeList();
 				fillSpMat(nodesInEle, nodesInEle, KBDB, BDBm);

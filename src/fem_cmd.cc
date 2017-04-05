@@ -9,9 +9,9 @@
 # Description: 
 #
 =============================================================================*/
-#define DEBUG 1
+//#define DEBUG 1
 //#define DEBUG_A_SP 1
-#define DEBUG_IO 1
+//#define DEBUG_IO 1
 
 const double ro_Cu = 1.7e-8;
 const double height = 1; // for 2d surface current boundary

@@ -9,7 +9,7 @@
 # Description: 
 #
 =============================================================================*/
-//#define DEBUG
+//#define DEBUG 1
 
 #include "loadB.h"
 #include <string>
@@ -48,7 +48,7 @@ void Boundary :: setBoundary(istream &in) {
 #ifdef DEBUG
 		cout << cache << endl;
 #endif
-		if (cache == "$Volumn" || cache == "$Volume") {
+		if (cache.find("$Volumn", 0) != string::npos || cache.find("$Volume", 0)!= string::npos ) {
 				in >> volNum_;
 				for (int i = 0; i < volNum_; ++i) {
 					int vid; 
@@ -58,7 +58,7 @@ void Boundary :: setBoundary(istream &in) {
 					vVal_.push_back(val);
 				}
 		}
-		if (cache == "$Surface") {
+		if (cache.find("$Surface", 0)!= string::npos ) {
 				in >> surfNum_;
 				for (int i = 0; i < surfNum_; ++i) {
 					int sid;
@@ -68,7 +68,7 @@ void Boundary :: setBoundary(istream &in) {
 					sVal_.push_back(val);
 				}
 		}
-		if (cache == "$Line") {
+		if (cache.find("$Line", 0)!= string::npos ) {
 				in >> lineNum_;
 				for (int i = 0; i < lineNum_; ++i) {
 					int lid;
@@ -78,7 +78,7 @@ void Boundary :: setBoundary(istream &in) {
 					lVal_.push_back(val);
 				}
 		}
-		if (cache == "$Via") {
+		if (cache.find("$Via", 0)!= string::npos ) {
 				in >> viaNum_;
 				for (int i = 0; i < viaNum_; ++i) {
 					int viaid;
@@ -88,7 +88,7 @@ void Boundary :: setBoundary(istream &in) {
 					viaVal_.push_back(val);
 				}
 		}
-		if (cache == "$Flux") {
+		if (cache.find("$Flux", 0)!= string::npos ) {
 				in >> fluxNum_;
 				for (int i = 0; i < fluxNum_; ++i) {
 					int fluxid;
